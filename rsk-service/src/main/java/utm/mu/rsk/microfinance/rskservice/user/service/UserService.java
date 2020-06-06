@@ -8,6 +8,7 @@ import utm.mu.rsk.microfinance.rskservice.user.repository.UserRepository;
 import javax.mail.MessagingException;
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -40,6 +41,11 @@ public class UserService {
 //        mailService.sendMail(user.getEmail(), "test mail","<a href=\"http://localhost:4200/verification/"+ user.getToken() +"\">Click to verify your account</a>");
 
         return this.dao.save(user);
+    }
+
+    public Optional<User> findByUsername(String username) {
+        Optional<User> user = dao.findByUserName(username);
+        return user;
     }
 
 }

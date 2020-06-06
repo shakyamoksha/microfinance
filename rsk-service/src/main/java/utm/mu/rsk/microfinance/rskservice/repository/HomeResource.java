@@ -1,5 +1,6 @@
 package utm.mu.rsk.microfinance.rskservice.repository;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,12 +9,13 @@ public class HomeResource {
 
     @GetMapping("/")
     public String home(){
-        return ("<h1>Welcome Home</h1>");
+        return ("Welcome Home");
     }
 
-    @GetMapping("/users")
+    @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
     public String user(){
-        return ("<h1>User logged in</h1>");
+        String USER = "User logged in";
+        return USER;
     }
 
     @GetMapping("/admin")
