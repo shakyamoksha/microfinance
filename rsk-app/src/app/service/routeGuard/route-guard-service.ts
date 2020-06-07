@@ -6,8 +6,8 @@ import {LoginService} from '../../forms/login/service/login.service';
 export class RouteGuardService implements CanActivate {
   constructor(private router: Router,  private service: LoginService) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const user = sessionStorage.getItem('role');
-    if (user === 'ROLE_USER') {
+    const user = sessionStorage.getItem('user');
+    if (user !== null) {
       return true;
     }
     this.router.navigate(['']);
@@ -19,8 +19,8 @@ export class RouteGuardService implements CanActivate {
 export class RouteGuardAdminService implements CanActivate {
   constructor(private router: Router,  private service: LoginService) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const user = sessionStorage.getItem('role');
-    if (user === 'ROLE_ADMIN') {
+    const user = sessionStorage.getItem('user');
+    if (user === 'admin') {
       return true;
     }
     this.router.navigate(['']);

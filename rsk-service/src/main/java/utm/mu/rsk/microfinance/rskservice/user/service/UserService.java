@@ -2,6 +2,7 @@ package utm.mu.rsk.microfinance.rskservice.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import utm.mu.rsk.microfinance.rskservice.repository.notification.MailService;
 import utm.mu.rsk.microfinance.rskservice.user.model.User;
 import utm.mu.rsk.microfinance.rskservice.user.repository.UserRepository;
 
@@ -16,8 +17,8 @@ public class UserService {
     @Autowired
     UserRepository dao;
 
-//    @Autowired
-//    MailService mailService;
+    @Autowired
+    MailService mailService;
 
     static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     static SecureRandom rnd = new SecureRandom();
@@ -34,12 +35,11 @@ public class UserService {
     }
 
     public User addUser(User user) throws MessagingException {
-
         user.setToken(randomString(25));
         user.setRoles("ROLE_USER");
-
-//        mailService.sendMail(user.getEmail(), "test mail","<a href=\"http://localhost:4200/verification/"+ user.getToken() +"\">Click to verify your account</a>");
-
+        mailService.sendMail(user.getEmail(),
+                "Register Account - Microfinance",
+                "<a href=\"http://localhost:4200/verification/"+ user.getToken() + "/"+ user.getUserName() +"\">Click to verify your account</a>");
         return this.dao.save(user);
     }
 
