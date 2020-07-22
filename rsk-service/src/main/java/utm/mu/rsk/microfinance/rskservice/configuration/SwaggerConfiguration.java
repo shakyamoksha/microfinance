@@ -25,6 +25,21 @@ import java.util.List;
 @EnableSwagger2
 @EnableAutoConfiguration
 public class SwaggerConfiguration {
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer(){
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedHeaders("*")
+                        .allowedOrigins("*")
+                        .allowedMethods("*")
+                        .allowCredentials(true);
+            }
+        };
+    }
+
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
