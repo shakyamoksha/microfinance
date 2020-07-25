@@ -56,11 +56,8 @@ export class LoginComponent implements OnInit {
       this.service.getUser(login.userName).subscribe(user => {
         if (user !== null) {
           if (user.roles === 'ROLE_USER') {
-            // sessionStorage.setItem('role', user.roles);
             this.router.navigate(['home']);
           } else if (user.roles === 'ROLE_ADMIN') {
-            // sessionStorage.setItem('role', user.roles);
-            // console.log('admin');
             this.router.navigate(['admin']);
           }
         }

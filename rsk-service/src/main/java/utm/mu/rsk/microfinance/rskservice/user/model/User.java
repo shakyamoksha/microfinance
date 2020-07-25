@@ -2,6 +2,7 @@ package utm.mu.rsk.microfinance.rskservice.user.model;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "USERS")
@@ -18,7 +19,25 @@ public class User {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "FIRST_NAME")
+    private String firstName;
+
+    @Column(name = "LAST_NAME")
+    private String lastName;
+
+    @Column(name = "NIC")
+    private String nic;
+
+    @Column(name = "PHONE")
+    private int phone;
+
+    @Column(name = "ADDRESS")
+    private String address;
+
+    @Column(name = "DATE_OF_BIRTH")
+    private Date dateOfBirth;
+
+    @Column(name = "EMAIL")
     private String email;
 
     @Column(name = "ROLES")
@@ -52,6 +71,54 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getEmail() {
