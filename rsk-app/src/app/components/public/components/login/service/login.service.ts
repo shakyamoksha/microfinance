@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpService} from '../../../service/http/http.service';
+import {HttpService} from '../../../../../service/http/http.service';
 const SERVER_URL = 'user';
 
 @Injectable({providedIn: 'root'})

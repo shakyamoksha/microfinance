@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {AuthService} from '../http/auth.service';
-import {HttpService} from '../http/http.service';
+import {Router} from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class AuthenticateService {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   getAuthToken(login) {return this.authService.post(login); }
 
@@ -13,9 +13,16 @@ export class AuthenticateService {
 
   getAuthenticatedUser() {return sessionStorage.getItem('user'); }
 
+  isLoggedIn() {
+    const user = sessionStorage.getItem('user');
+    return !(user === null);
+  }
+
   logout() {
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('role');
+    this.router.navigate(['']);
   }
 
 }

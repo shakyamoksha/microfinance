@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {User} from '../../schemas/user';
-import {AuthenticateService} from '../../service/auth/auth-service';
+import {User} from '../../../../../schemas/user';
+import {AuthenticateService} from '../../../../../service/auth/auth-service';
 import {Router} from '@angular/router';
-import {LoginService} from './service/login.service';
+import {LoginService} from '../service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,6 @@ import {LoginService} from './service/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  hide = true;
   user = new User();
 
   public loginForm: FormGroup;
@@ -38,7 +37,6 @@ export class LoginComponent implements OnInit {
   loginFormSubmit = (loginFormValue) => {
     event.preventDefault();
     this.formSubmitted = true;
-
     if (this.loginForm.valid) {
       const input: User = {
         userName: loginFormValue.userName,
@@ -50,18 +48,14 @@ export class LoginComponent implements OnInit {
 
   authentication(login: any) {
     this.authenticationService.getAuthToken(login).subscribe(data => {
+      const role = data.data.authorities[0].authority;
       sessionStorage.setItem('user', login.userName);
       sessionStorage.setItem('token', data.jwt);
-
-      this.service.getUser(login.userName).subscribe(user => {
-        if (user !== null) {
-          if (user.roles === 'ROLE_USER') {
-            this.router.navigate(['home']);
-          } else if (user.roles === 'ROLE_ADMIN') {
-            this.router.navigate(['admin']);
-          }
-        }
-      });
+      sessionStorage.setItem('role', role);
+      if (data !== null) {
+        if (role === 'ROLE_USER') {this.router.navigate(['']);
+        } else if (role === 'ROLE_ADMIN') {this.router.navigate(['lender']); }
+      }
     });
   }
 
