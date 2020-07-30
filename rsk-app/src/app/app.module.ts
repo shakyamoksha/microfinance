@@ -11,7 +11,6 @@ import {MaterialModule} from './material-module';
 import { DashPublicComponent } from './components/public/dash-public/dash-public.component';
 import {RouterModule} from '@angular/router';
 import { DashLenderComponent } from './components/lender/dash-lender/dash-lender.component';
-import { LandingPageComponent } from './components/public/components/landing-page/components/landing-page.component';
 
 @NgModule({
   declarations: [
