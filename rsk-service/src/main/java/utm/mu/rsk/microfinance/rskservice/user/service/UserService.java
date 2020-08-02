@@ -38,8 +38,9 @@ public class UserService {
         user.setToken(randomString(25));
         user.setRoles("ROLE_USER");
         mailService.sendMail(user.getEmail(),
-                "Register Account - Microfinance",
-                "<a href=\"http://localhost:4200/verification/"+ user.getToken() + "/"+ user.getUserName() +"\">Click to verify your account</a>");
+                "Verify Account - Microfinance",
+                "Dear" + user.getFirstName() + " " + user.getLastName() + ", <br>" +
+                        "<a href=\"http://localhost:4200/verification/"+ user.getToken() + "/"+ user.getUserName() +"\">Click to verify your account</a>");
         return this.dao.save(user);
     }
 

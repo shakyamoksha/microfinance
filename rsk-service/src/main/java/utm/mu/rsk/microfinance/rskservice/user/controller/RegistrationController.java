@@ -9,7 +9,7 @@ import javax.mail.MessagingException;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("register")
+@RequestMapping("api/v1/register")
 public class RegistrationController {
 
     @Autowired
