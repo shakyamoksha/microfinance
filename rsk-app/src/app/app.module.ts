@@ -11,12 +11,14 @@ import {MaterialModule} from './material-module';
 import { DashPublicComponent } from './components/public/dash-public/dash-public.component';
 import {RouterModule} from '@angular/router';
 import { DashLenderComponent } from './components/lender/dash-lender/dash-lender.component';
+import { VerificationComponent } from './components/public/components/verification/component/verification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashPublicComponent,
     DashLenderComponent,
+    VerificationComponent,
   ],
   imports: [
     BrowserModule,
