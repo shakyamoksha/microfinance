@@ -12,4 +12,11 @@
 }
 .mat-toolbar{
   height: 50px;
+  background: darkslategrey;
+  color: #fff;
 }
+
+/*.mat-toolbar.mat-primary {*/
+/*  background: darkslategrey;*/
+/*  color: #fff;*/
+/*}*/

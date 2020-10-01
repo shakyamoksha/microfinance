@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {DashLenderComponent} from './dash-lender/dash-lender.component';
 
 const routes: Routes = [
-  {path: '', component: DashLenderComponent}
+  {path: '', component: DashLenderComponent},
+  {path: '', loadChildren: () => import('../public/dash-public.module').then(m => m.DashPublicModule)},
 ];
 
 @NgModule({
