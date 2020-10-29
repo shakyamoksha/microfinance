@@ -1,1 +1,3 @@
 SELECT * FROM USERS;
+
+DELETE FROM USERS WHERE USERNAME = 'xrannan@outlook.com';

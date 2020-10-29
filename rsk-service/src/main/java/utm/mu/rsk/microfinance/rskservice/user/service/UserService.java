@@ -39,7 +39,7 @@ public class UserService {
         user.setRoles("ROLE_USER");
         mailService.sendMail(user.getEmail(),
                 "Verify Account - Microfinance",
-                "Dear" + user.getFirstName() + " " + user.getLastName() + ", <br>" +
+                "Dear " + user.getFirstName() + " " + user.getLastName() + ", <br>" +
                         "<a href=\"http://localhost:4200/verification/"+ user.getToken() + "/"+ user.getUserName() +"\">Click to verify your account</a>");
         return this.dao.save(user);
     }
