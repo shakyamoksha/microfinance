@@ -2,6 +2,7 @@ package utm.mu.rsk.microfinance.rskservice.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import utm.mu.rsk.microfinance.rskservice.repository.common.entity.ResponseEntity;
 import utm.mu.rsk.microfinance.rskservice.repository.notification.MailService;
 import utm.mu.rsk.microfinance.rskservice.user.model.User;
 import utm.mu.rsk.microfinance.rskservice.user.repository.UserRepository;
@@ -45,8 +46,38 @@ public class UserService {
     }
 
     public Optional<User> findByUsername(String username) {
-        Optional<User> user = dao.findByUserName(username);
-        return user;
+        return dao.findByUserName(username);
     }
+
+    public boolean checkIfExists(String username) {
+        Optional<User> user;
+        user = dao.findByUserName(username);
+        return user.isPresent();
+    }
+
+    public ResponseEntity verfiyUser(User user) {
+        ResponseEntity responseEntity = new ResponseEntity();
+        User entity = new User();
+        Optional<User> data = dao.findByUserNameAndTokenAndActiveFalse(user.getUserName(), user.getToken());
+        Optional<User> alreadyActive = dao.findByUserNameAndActiveTrue(user.getUserName());
+
+        if(data.isPresent()) {
+            entity = data.get();
+            entity.setActive(true);
+            entity.setToken(null);
+            dao.save(entity);
+            responseEntity.setStatus("200");
+            responseEntity.setMessage("Verified and Activated");
+        } else if(alreadyActive.isPresent()){
+            responseEntity.setStatus("201");
+            responseEntity.setMessage("Already Activated");
+        } else {
+            responseEntity.setStatus("404");
+            responseEntity.setMessage("Not Found");
+        }
+        return responseEntity;
+    }
+
+
 
 }

@@ -5,6 +5,7 @@ import {RouteGuardAdminService, RouteGuardService} from './service/routeGuard/ro
 const routes: Routes = [
   {path: '', loadChildren: () => import('./components/public/dash-public.module').then(m => m.DashPublicModule)},
   {path: 'lender', loadChildren: () => import('./components/lender/dash-lender.module').then(m => m.DashLenderModule)},
+  // { path: '**', component: PageNotFoundComponent }
   // {path: '', component: LoginComponent},
   // {path: 'home', component: HomeComponent, canActivate: [RouteGuardService]},
   // {path: 'admin', component: AdminComponent, canActivate: [RouteGuardService, RouteGuardAdminService]},

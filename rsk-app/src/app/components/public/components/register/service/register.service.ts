@@ -8,8 +8,8 @@ export class RegistrationService {
 
   constructor(private service: HttpService) {}
 
-  registerUser(data) {
-    return this.service.post(`${SERVER_URL}/add`, data);
-  }
+  registerUser(data) {return this.service.post(`${SERVER_URL}/add`, data); }
+
+  verifyUser(data) {return this.service.post(`${SERVER_URL}/verification`, data); }
 
 }

@@ -8,10 +8,14 @@ const routes: Routes = [
   {path: '', component: DashPublicComponent,
     children: [
       {path: '', redirectTo: 'landing', pathMatch: 'full'},
-      {path: 'landing', component: LandingPageComponent},
-      {path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)},
-      {path: 'register', loadChildren: () => import('./components/register/register.module').then(m => m.RegisterModule)},
-      {path: 'verification', loadChildren: () => import('./components/verification/verification.module').then(m => m.VerificationModule)},
+      {path: 'landing',
+        loadChildren: () => import('./components/landing-page/landing-page.module').then(m => m.LandingPageModule)},
+      {path: 'login',
+        loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)},
+      {path: 'register',
+        loadChildren: () => import('./components/register/register.module').then(m => m.RegisterModule)},
+      {path: 'verification/:token/:user',
+        loadChildren: () => import('./components/verification/verification.module').then(m => m.VerificationModule)},
     ]
   }
 ];
