@@ -121,16 +121,25 @@
             <div class="col-sm-4">
               <mat-form-field class="full-width">
                 <mat-label>Password</mat-label>
-                <input matInput formControlName="password" placeholder="Choose Wisely" required>
+                <input matInput formControlName="password" #password placeholder="Choose Wisely" required>
                 <mat-error *ngIf="fifthFormGroup.controls['password'].hasError('required')">Password required!</mat-error>
+                <mat-error *ngIf="fifthFormGroup.controls['password'].hasError('passwordStrength')">
+                  {{fifthFormGroup.get('password').errors['passwordStrength']}}
+                </mat-error>
+                <mat-error *ngIf="fifthFormGroup.controls['password'].hasError('minlength')">Must be at least 10 characters!</mat-error>
+                <mat-hint align="end" aria-live="polite">
+                  {{password.value.length}} / 50
+                </mat-hint>
               </mat-form-field>
             </div>
 
             <div class="col-sm-4">
-              <!--          <mat-form-field>-->
-              <!--            <mat-label>Confirm Password</mat-label>-->
-              <!--            <input matInput formControlName="confirmPassword" placeholder="Choose Wisely" required>-->
-              <!--          </mat-form-field>-->
+              <mat-form-field class="full-width">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput formControlName="confirmPassword" placeholder="Confirm Password" required>
+                <mat-error *ngIf="fifthFormGroup.controls['password'].hasError('required')">Confirmation password required!</mat-error>
+                <mat-error *ngIf="fifthFormGroup.controls['confirmPassword'].hasError('mustMatch')">Passwords don't match!</mat-error>
+              </mat-form-field>
             </div>
           </div>
 

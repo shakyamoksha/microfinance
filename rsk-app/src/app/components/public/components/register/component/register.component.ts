@@ -5,6 +5,8 @@ import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/mater
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {RegistrationService} from '../service/register.service';
+import {MustMatch} from '../../../../../helpers/must-match.validator';
+import {PasswordStrengthValidator} from '../../../../../helpers/password-strengh.validator';
 
 export const DateFormat = {
   parse: {dateInput: 'LL', },
@@ -60,9 +62,13 @@ export class RegisterComponent implements OnInit {
     });
     this.fifthFormGroup = this._formBuilder.group({
       email: ['', [Validators.required, Validators.pattern('^(("[\\w-\\s]+")|([\\w-]+(?:\\.[\\w-]+)*)|("[\\w-\\s]+")([\\w-]+(?:\\.[\\w-]+)*))(@((?:[\\w-]+\\.)*\\w[\\w-]{0,66})\\.([a-z]{2,6}(?:\\.[a-z]{2})?)$)|(@\\[?((25[0-5]\\.|2[0-4][0-9]\\.|1[0-9]{2}\\.|[0-9]{1,2}\\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\\]?$)')]],
-      password: ['', [Validators.required]],
-      // confirmPassword: ['', [Validators.required]],
-    });
+      password: ['', [
+        Validators.required,
+        /*** Validators.minLength(10), **/
+        PasswordStrengthValidator
+      ]],
+      confirmPassword: ['', [Validators.required]],
+    }, {validator: MustMatch('password', 'confirmPassword')});
   }
 
   processStepperData() {

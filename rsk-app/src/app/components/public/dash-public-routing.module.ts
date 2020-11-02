@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {DashPublicComponent} from './dash-public/dash-public.component';
-import {LandingPageComponent} from './components/landing-page/components/landing-page.component';
-
 
 const routes: Routes = [
   {path: '', component: DashPublicComponent,
