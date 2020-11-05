@@ -1,6 +1,7 @@
 package utm.mu.rsk.microfinance.rskservice.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import utm.mu.rsk.microfinance.rskservice.repository.common.entity.ResponseEntity;
 import utm.mu.rsk.microfinance.rskservice.repository.notification.MailService;
@@ -36,8 +37,15 @@ public class UserService {
     }
 
     public User addUser(User user) throws MessagingException {
+
+        int strength = 10; // Work Factor of BCRYPT
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(strength, new SecureRandom());
+        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+
         user.setToken(randomString(25));
         user.setRoles("ROLE_USER");
+        user.setActive(false);
+        user.setPassword(encodedPassword);
         mailService.sendMail(user.getEmail(),
                 "Verify Account - Microfinance",
                 "Dear " + user.getFirstName() + " " + user.getLastName() + ", <br>" +
