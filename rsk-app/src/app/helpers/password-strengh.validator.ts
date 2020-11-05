@@ -30,4 +30,4 @@ export const PasswordStrengthValidator = function(control: AbstractControl): Val
     // return { passwordStrength: `Password has to contain special character,current value ${value}` };
   }
   return null;
-}
+};

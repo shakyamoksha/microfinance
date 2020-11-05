@@ -2,7 +2,7 @@
   <mat-card>
     <mat-vertical-stepper [linear]="true" #stepper>
 
-      <mat-step [stepControl]="firstFormGroup" errorMessage="Full name is required.">
+      <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Fill out your name</ng-template>
           <div class="row">
@@ -73,7 +73,7 @@
         </form>
       </mat-step>
 
-      <mat-step [stepControl]="fourthFormGroup" errorMessage="Contact details are required.">
+      <mat-step [stepControl]="fourthFormGroup" errorMessage="Contact Details are required.">
         <form [formGroup]="fourthFormGroup">
           <ng-template matStepLabel>Contact Details</ng-template>
 
@@ -102,9 +102,9 @@
         </form>
       </mat-step>
 
-      <mat-step [stepControl]="fifthFormGroup" errorMessage="Registration credentials are required.">
+      <mat-step [stepControl]="fifthFormGroup" errorMessage="Registration Credentials are required.">
         <form [formGroup]="fifthFormGroup">
-          <ng-template matStepLabel>Registration credentials</ng-template>
+          <ng-template matStepLabel>Registration Credentials</ng-template>
           <div class="row">
             <div class="col-sm-4">
               <mat-form-field class="full-width">

@@ -49,12 +49,6 @@ public class UserService {
         return dao.findByUserName(username);
     }
 
-    public boolean checkIfExists(String username) {
-        Optional<User> user;
-        user = dao.findByUserName(username);
-        return user.isPresent();
-    }
-
     public ResponseEntity verfiyUser(User user) {
         ResponseEntity responseEntity = new ResponseEntity();
         User entity = new User();
@@ -77,7 +71,5 @@ public class UserService {
         }
         return responseEntity;
     }
-
-
 
 }

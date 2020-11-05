@@ -19,9 +19,7 @@ export class AuthenticateService {
   }
 
   logout() {
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('role');
+    sessionStorage.clear();
     this.router.navigate(['']);
   }
 
