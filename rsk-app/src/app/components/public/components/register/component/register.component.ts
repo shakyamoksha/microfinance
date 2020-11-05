@@ -20,7 +20,7 @@ export const DateFormat = {
   providers: [
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]},
     {provide: MAT_DATE_FORMATS, useValue: DateFormat},
-    {provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }}
+    {provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true, displayDefaultIndicatorType: false }}
   ],
 })
 export class RegisterComponent implements OnInit {
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.formGroupBuilt();
     // console.log(this.minDate);
-    console.log(this.currentYear);
+    // console.log(this.currentYear);
   }
 
   formGroupBuilt() {

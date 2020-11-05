@@ -7,9 +7,9 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'package', pathMatch: 'full'},
       {path: 'package',
-      loadChildren: () => import('./components/package/package.module').then(m => m.PackageModule)},
+      loadChildren: () => import('./processes/package/package.module').then(m => m.PackageModule)},
       {path: 'customers',
-      loadChildren: () => import('./components/customers/customers.module').then(m => m.CustomersModule)}
+      loadChildren: () => import('./processes/customers/customers.module').then(m => m.CustomersModule)}
     ]
   }
   // {path: '', loadChildren: () => import('../public/dash-public.module').then(m => m.DashPublicModule)},
