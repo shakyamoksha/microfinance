@@ -4,31 +4,30 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './forms/login/login.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpInterceptorService} from './service/http/http.interceptor.service';
-import { HomeComponent } from './forms/user/home/home.component';
-import { AdminComponent } from './forms/admin/admin/admin.component';
 import {MaterialModule} from './material-module';
-import { LayoutModule } from '@angular/cdk/layout';
+import { DashPublicComponent } from './components/public/dash-public/dash-public.component';
+import {RouterModule} from '@angular/router';
+import { DashLenderComponent } from './components/lender/dash-lender/dash-lender.component';
+import { VerificationComponent } from './components/public/components/verification/component/verification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    HomeComponent,
-    AdminComponent,
+    DashPublicComponent,
+    DashLenderComponent,
+    VerificationComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule,
     HttpClientModule,
     AppRoutingModule,
     MaterialModule,
-    BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule,
-    LayoutModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true}],
   bootstrap: [AppComponent]

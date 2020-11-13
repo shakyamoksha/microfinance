@@ -26,10 +26,10 @@ public class AuthController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthResponse> createAuthToken(@RequestBody User user) throws Exception {
+        Object data;
+
         try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword())
-            );
+            data = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
         } catch (BadCredentialsException e) {
             throw new Exception("Incorrect username or password!", e);
         }
@@ -37,7 +37,7 @@ public class AuthController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUserName());
         final String jwt = jwtUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthResponse(jwt));
+        return ResponseEntity.ok(new AuthResponse(jwt, data));
     }
 
 }

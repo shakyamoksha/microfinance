@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.mail.MessagingException;
 
 @RestController
-@RequestMapping("register")
+@RequestMapping("api/v1/register")
 public class MailController {
 
     @Autowired

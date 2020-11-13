@@ -1,0 +1,184 @@
+<div class="container">
+  <mat-card>
+    <mat-vertical-stepper [linear]="true" #stepper>
+
+      <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required." state="name">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Fill out your name</ng-template>
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field class="full-width">
+                <mat-label> First Name</mat-label>
+                <input matInput formControlName="firstName" placeholder="First name" required>
+                <mat-error *ngIf="firstFormGroup.controls['firstName'].hasError('pattern')">Character only!</mat-error>
+                <mat-error *ngIf="firstFormGroup.controls['firstName'].hasError('required')">Information required!</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field class="full-width">
+                <mat-label> Last Name</mat-label>
+                <input matInput formControlName="lastName" placeholder="Last name" required>
+                <mat-error *ngIf="firstFormGroup.controls['lastName'].hasError('pattern')">Character only!</mat-error>
+                <mat-error *ngIf="firstFormGroup.controls['lastName'].hasError('required')">Information required!</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="secondFormGroup" errorMessage="NIC is required." state="nic">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>National Identity Card details</ng-template>
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field class="full-width">
+                <mat-label>National Identity Card</mat-label>
+                <input matInput formControlName="nic" placeholder="Ex. (S)1234567894561" required>
+                <mat-error *ngIf="secondFormGroup.controls['nic'].hasError('pattern')">Incorrect format!</mat-error>
+                <mat-error *ngIf="secondFormGroup.controls['nic'].hasError('required')">Information required!</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="thirdFormGroup" errorMessage="Date of Birth is required." state="dob">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Date of Birth</ng-template>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field class="full-width">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput formControlName="dateOfBirth" placeholder="Date of Birth" [matDatepicker]="dp3" required>
+                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                <mat-datepicker #dp3 disabled="false" startView="year" [startAt]="startDate" ></mat-datepicker>
+                <mat-error *ngIf="thirdFormGroup.controls['dateOfBirth'].hasError('required')">Information required!</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="fourthFormGroup" errorMessage="Contact Details are required." state="contact">
+        <form [formGroup]="fourthFormGroup">
+          <ng-template matStepLabel>Contact Details</ng-template>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field class="full-width">
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="phone" placeholder="Ex. 5*** ****" required>
+                <mat-error *ngIf="fourthFormGroup.controls['phone'].hasError('pattern')">Invalid Phone number!</mat-error>
+                <mat-error *ngIf="fourthFormGroup.controls['phone'].hasError('required')">Information required!</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-8">
+              <mat-form-field class="full-width">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY" required>
+                <mat-error *ngIf="fourthFormGroup.controls['address'].hasError('required')">Information required!</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="fifthFormGroup" errorMessage="Registration Credentials are required." state="credentials">
+        <form [formGroup]="fifthFormGroup">
+          <ng-template matStepLabel>Registration Credentials</ng-template>
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field class="full-width">
+                <mat-label>Email Address</mat-label>
+                <input matInput formControlName="email" placeholder="example@yahoo.com" required>
+                <mat-error *ngIf="fifthFormGroup.controls['email'].hasError('required')">Email required!</mat-error>
+                <mat-error *ngIf="fifthFormGroup.controls['email'].hasError('pattern')">Invalid Email!</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" #password placeholder="Choose Wisely" required>
+                <mat-error *ngIf="fifthFormGroup.controls['password'].hasError('required')">Password required!</mat-error>
+                <mat-error *ngIf="fifthFormGroup.controls['password'].hasError('passwordStrength')">
+                  {{fifthFormGroup.get('password').errors['passwordStrength']}}
+                </mat-error>
+                <mat-error *ngIf="fifthFormGroup.controls['password'].hasError('minlength')">Must be at least 10 characters!</mat-error>
+                <mat-hint align="end" aria-live="polite">
+                  {{password.value.length}} / 50
+                </mat-hint>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-4">
+              <mat-form-field class="full-width">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput formControlName="confirmPassword" placeholder="Confirm Password" required>
+                <mat-error *ngIf="fifthFormGroup.controls['password'].hasError('required')">Confirmation password required!</mat-error>
+                <mat-error *ngIf="fifthFormGroup.controls['confirmPassword'].hasError('mustMatch')">Passwords don't match!</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step state="submit">
+        <ng-template matStepLabel>Submit details</ng-template>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset fields</button>
+          <button mat-button matStepperNext (click)="processStepperData()">Register Account</button>
+        </div>
+      </mat-step>
+
+      <mat-step state="redo">
+        <ng-template matStepLabel>Verification</ng-template>
+        <h1>Registration Successful</h1>
+
+        <h3>Verification link sent to mail. Click link to activate account!</h3>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset fields</button>
+        </div>
+      </mat-step>
+
+      <ng-template matStepperIcon="name"><mat-icon>person_add_alt_1</mat-icon></ng-template>
+      <ng-template matStepperIcon="nic"><mat-icon>fingerprint</mat-icon></ng-template>
+      <ng-template matStepperIcon="dob"><mat-icon>cake</mat-icon></ng-template>
+      <ng-template matStepperIcon="contact"><mat-icon>contact_page</mat-icon></ng-template>
+      <ng-template matStepperIcon="credentials"><mat-icon>vpn_key</mat-icon></ng-template>
+      <ng-template matStepperIcon="submit"><mat-icon>done_outline</mat-icon></ng-template>
+      <ng-template matStepperIcon="redo"><mat-icon>cached</mat-icon></ng-template>
+
+    </mat-vertical-stepper>
+  </mat-card>
+</div>
+
