@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    password: Dimethyltryptamine
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: rskmfinance
+  jpa:
+    open-in-view: false
+  mail:
+    default-encoding: UTF-8
+    host: smtp.office365.com
+    password: Dimethyltryptamine
+    username: developer.rskmicrofinance@outlook.com
+    port: 587
+    properties:
+      mail:
+        smpt:
+          auth: true
+        smtp:
+          starttls:
+            enable: true
+    test-connection: true
