@@ -12,6 +12,7 @@ import { DashPublicComponent } from './components/public/dash-public/dash-public
 import {RouterModule} from '@angular/router';
 import { DashLenderComponent } from './components/lender/dash-lender/dash-lender.component';
 import { VerificationComponent } from './components/public/components/verification/component/verification.component';
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,9 @@ import { VerificationComponent } from './components/public/components/verificati
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
     RouterModule,
     HttpClientModule,
     AppRoutingModule,

@@ -1,0 +1,48 @@
+<form [formGroup]="productCreateForm" (ngSubmit)="productFormSubmit(productCreateForm.getRawValue())" novalidate>
+  <div class="container">
+
+    <mat-form-field class="col-3">
+      <mat-label> Name</mat-label>
+      <input matInput formControlName="name" placeholder="Product Name" required>
+      <!--        <mat-error *ngIf="firstFormGroup.controls['firstName'].hasError('pattern')">Character only!</mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="col-3">
+      <mat-label> Title </mat-label>
+      <input matInput formControlName="title" placeholder="Title" required>
+      <!--        <mat-error *ngIf="firstFormGroup.controls['lastName'].hasError('pattern')">Character only!</mat-error>-->
+      <!--        <mat-error *ngIf="firstFormGroup.controls['lastName'].hasError('required')">Information required!</mat-error>-->
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label> Description </mat-label>
+      <textarea matInput required
+                cdkTextareaAutosize
+                placeholder="Enter product description.."
+                formControlName="description"
+                cdkAutosizeMinRows="2"
+                cdkAutosizeMaxRows="6s"></textarea>
+      <mat-icon matSuffix>description</mat-icon>
+      <!--        <mat-error *ngIf="firstFormGroup.controls['lastName'].hasError('pattern')">Character only!</mat-error>-->
+      <!--        <mat-error *ngIf="firstFormGroup.controls['lastName'].hasError('required')">Information required!</mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="col-3">
+      <mat-label> Allocation Amount </mat-label>
+      <input matInput type="number" class="right-align" formControlName="amount" placeholder="Loan Amount" required>
+      <span matPrefix>Rs.&nbsp;</span>
+      <span matSuffix>.00</span>
+      <!--        <mat-error *ngIf="firstFormGroup.controls['lastName'].hasError('pattern')">Character only!</mat-error>-->
+      <!--        <mat-error *ngIf="firstFormGroup.controls['lastName'].hasError('required')">Information required!</mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="col-3">
+      <mat-label> Product Type</mat-label>
+      <input matInput formControlName="type" placeholder="Loan Type" required>
+    </mat-form-field>
+
+    <button mat-raised-button [disabled]="productCreateForm.invalid">Create Product</button>
+
+  </div>
+</form>

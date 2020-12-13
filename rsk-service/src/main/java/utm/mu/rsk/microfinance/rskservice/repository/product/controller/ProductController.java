@@ -50,10 +50,13 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping(value = "delete", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ResponseModel> deleteProduct(@RequestBody ProductEntity entity) {
-        this.service.deleteProduct(entity.getId());
-        return responseService.preparedSuccessResponseWMessage("","Deleted successfully!");
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<ResponseModel> deleteProduct(@PathVariable("id") int id) {
+        if(this.service.deleteProduct(id)){
+            return responseService.preparedSuccessResponseWMessage("","Deleted successfully!");
+        } else{
+            return responseService.prepareFailedResponse("Unable to delete data");
+        }
     }
 
     @GetMapping("getall")
