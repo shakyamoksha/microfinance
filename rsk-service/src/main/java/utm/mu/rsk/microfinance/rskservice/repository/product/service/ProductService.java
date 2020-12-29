@@ -52,9 +52,4 @@ public class ProductService {
     public List<ProductEntity> getAllProducts() {
         return repository.findAll();
     }
-
-
-
-
-
 }

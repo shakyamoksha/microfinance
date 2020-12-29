@@ -10,11 +10,17 @@ import utm.mu.rsk.microfinance.rskservice.common.entity.ResponseModel;
 import utm.mu.rsk.microfinance.rskservice.common.services.CommonResponse;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.model.RequestEntity;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.repository.RequestRepository;
+import utm.mu.rsk.microfinance.rskservice.repository.requests.service.RequestsService;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/request/")
 public class RequestsController {
     Logger logger = LoggerFactory.getLogger(RequestsController.class);
+
+    @Autowired
+    RequestsService service;
 
     @Autowired
     RequestRepository repository;
@@ -38,8 +44,15 @@ public class RequestsController {
         return responseService.preparedSuccessResponseWMessage("","Request initiated!");
     }
 
-    @GetMapping(value = "getRequestsById", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "getRequestsById", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ResponseModel> getRequestsById(int id) {
-        return responseService.preparedSuccessResponseWMessage(repository.findById(id), "Get Requests By ID");
+
+        Optional<RequestEntity> requestEntity = repository.findById(id);
+
+        if(service.getRequestById(id)){
+            return responseService.preparedSuccessResponseWMessage(requestEntity, "Get Requests By ID");
+        } else {
+            return responseService.prepareFailedResponse("Request does not exist");
+        }
     }
 }
