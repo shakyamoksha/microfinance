@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("admin/product/")
-public class ProductController {
+public class ProductLenderController {
 
     @Autowired
     ProductService service;
@@ -64,6 +64,5 @@ public class ProductController {
         List<ProductEntity> list = service.getAllProducts();
         return new ResponseEntity<List<ProductEntity>>(list, new HttpHeaders(), HttpStatus.OK);
     }
-
 
 }
