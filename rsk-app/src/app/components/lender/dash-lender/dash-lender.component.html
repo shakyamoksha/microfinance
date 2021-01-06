@@ -25,7 +25,7 @@
 
       <button mat-button routerLink="/" matTooltip="Go to HomePage"
               *ngIf="this.authenticateService.isLoggedIn()">
-        <mat-icon>home</mat-icon>
+        <mat-icon>dashboard</mat-icon>
       </button>
 
       <span class="spacer"></span>
@@ -36,10 +36,10 @@
         Products
       </button>
 
-      <button mat-button routerLink="package" matTooltip="packages"
+      <button mat-button routerLink="requests" matTooltip="Requests"
               *ngIf="this.authenticateService.isLoggedIn()">
 <!--        <mat-icon>analytics</mat-icon>-->
-        Packages
+        Requests
       </button>
 
       <button mat-button routerLink="customers" matTooltip="customers"

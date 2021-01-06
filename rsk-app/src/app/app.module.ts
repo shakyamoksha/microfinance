@@ -7,19 +7,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpInterceptorService} from './service/http/http.interceptor.service';
-import {MaterialModule} from './material-module';
+import {MaterialModule} from './shared/material-module';
 import { DashPublicComponent } from './components/public/dash-public/dash-public.component';
 import {RouterModule} from '@angular/router';
 import { DashLenderComponent } from './components/lender/dash-lender/dash-lender.component';
 import { VerificationComponent } from './components/public/components/verification/component/verification.component';
-import {ToastrModule} from "ngx-toastr";
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashPublicComponent,
     DashLenderComponent,
-    VerificationComponent,
+    VerificationComponent
   ],
   imports: [
     BrowserModule,

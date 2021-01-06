@@ -13,8 +13,8 @@ import utm.mu.rsk.microfinance.rskservice.repository.product.service.ProductServ
 import java.util.List;
 
 @RestController
-@RequestMapping("product/")
-public class ProductPublicController {
+@RequestMapping("api/v1/product/")
+public class ProductUserController {
 
     @Autowired
     ProductService service;
@@ -24,4 +24,7 @@ public class ProductPublicController {
         List<ProductEntity> list = service.getAllProducts();
         return new ResponseEntity<List<ProductEntity>>(list, new HttpHeaders(), HttpStatus.OK);
     }
+
+    @GetMapping(value= "getById", produces = {MediaType.APPLICATION_JSON_VALUE})
+
 }
