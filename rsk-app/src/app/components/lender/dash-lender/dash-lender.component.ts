@@ -11,11 +11,7 @@ import {AuthenticateService} from '../../../service/auth/auth-service';
 })
 export class DashLenderComponent {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches), shareReplay());
 
   constructor(private breakpointObserver: BreakpointObserver, private authenticateService: AuthenticateService) {}
 

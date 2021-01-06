@@ -14,6 +14,10 @@ const routes: Routes = [
         loadChildren: () => import('./components/register/register.module').then(m => m.RegisterModule)},
       {path: 'verification/:token/:user',
         loadChildren: () => import('./components/verification/verification.module').then(m => m.VerificationModule)},
+      {path: 'products_customer',
+      loadChildren: () => import('./components/products/products.module').then(m => m.ProductsModule)},
+      {path: 'application/:id',
+      loadChildren: () => import('./components/application/application.module').then(m => m.ApplicationModule)}
     ]
   }
 ];

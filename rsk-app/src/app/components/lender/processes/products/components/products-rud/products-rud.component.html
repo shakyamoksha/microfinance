@@ -1,0 +1,68 @@
+<br>
+<div class="container">
+  <mat-form-field appearance="outline">
+    <mat-label>Search Product Data</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
+  </mat-form-field>
+</div>
+
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+      <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+    </ng-container>
+
+    <!-- Amount Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+      <td mat-cell *matCellDef="let row">Rs. <span style="color: green">{{row.amount}}</span> </td>
+    </ng-container>
+
+    <!-- Update Column -->
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef> Update </th>
+      <td mat-cell *matCellDef="let row">
+        <span class="col-1"
+              style="color: darkslateblue; cursor: pointer"
+              (click)="updateDialog(row)">
+          <mat-icon aria-hidden="false" aria-label="build_circle">build_circle</mat-icon>
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> Delete </th>
+      <td mat-cell *matCellDef="let row">
+        <span class="col-1"
+              style="color: #dc143d; cursor: pointer"
+              (click)="deleteDialog(row)">
+          <mat-icon aria-hidden="false" aria-label="delete">delete</mat-icon>
+        </span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+</div>
