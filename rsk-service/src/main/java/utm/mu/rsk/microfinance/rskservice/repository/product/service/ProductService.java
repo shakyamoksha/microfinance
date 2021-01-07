@@ -52,4 +52,14 @@ public class ProductService {
     public List<ProductEntity> getAllProducts() {
         return repository.findAll();
     }
+
+
+    public boolean getProductById(int id) {
+        boolean requestExists = false;
+        if(repository.findById(id).isPresent()){
+            requestExists = true;
+        }
+        return requestExists;
+    }
+
 }

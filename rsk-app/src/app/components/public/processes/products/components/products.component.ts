@@ -22,7 +22,6 @@ export class ProductsComponent implements OnInit {
   }
 
   navigateToApplication(id: any) {
-    console.log(id);
     this.router.navigate([`application`, id]);
   }
 }

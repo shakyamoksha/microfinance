@@ -36,16 +36,17 @@ public class RequestsController {
         requestEntity.setRequestStatus("CAPTURE");
         requestEntity.setAction("APPLIED");
         requestEntity.setCustomerName(entity.getCustomerName());
+        requestEntity.setCreatedBy(entity.getCreatedBy());
         requestEntity.setCustomerNumber(entity.getCustomerNumber());
-        requestEntity.setModifiedBy(entity.getCustomerName());
+        requestEntity.setModifiedBy(entity.getModifiedBy());
         requestEntity.setProductID(entity.getProductID());
         repository.save(requestEntity);
 
         return responseService.preparedSuccessResponseWMessage("","Request initiated!");
     }
 
-    @GetMapping(value = "getRequestsById", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ResponseModel> getRequestsById(int id) {
+    @GetMapping(value = "getRequestsById/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<ResponseModel> getRequestsById(@PathVariable int id) {
 
         Optional<RequestEntity> requestEntity = repository.findById(id);
 

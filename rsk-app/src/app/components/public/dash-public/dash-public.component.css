@@ -13,3 +13,8 @@
 .mat-toolbar{
   height: 50px;
 }
+.mat-toolbar{
+  height: 50px;
+  background: lightslategray;
+  color: #fff;
+}

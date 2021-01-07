@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('token', data.jwt);
       sessionStorage.setItem('role', role);
       if (data !== null) {
-        if (role === 'ROLE_USER') {this.router.navigate(['']);
+        if (role === 'ROLE_USER') {this.router.navigate(['products_customer']);
         } else if (role === 'ROLE_ADMIN') {this.router.navigate(['lender']); }
       }
     });
