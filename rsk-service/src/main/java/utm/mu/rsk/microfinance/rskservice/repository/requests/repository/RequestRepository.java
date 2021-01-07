@@ -16,4 +16,6 @@ public interface RequestRepository extends JpaRepository<RequestEntity, Integer>
     List<RequestEntity> findAllByAccountOfficerName(String accountOfficerName);
 
     Optional<RequestEntity> findById(Integer id);
+
+    List<RequestEntity> findAllByCreatedBy(String userId);
 }
