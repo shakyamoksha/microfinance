@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute} from '@angular/router';
 import {ApplicationService} from '../service/application.service';
-import {Requests} from '../schema/requests';
+import {Requests} from '../../../../../shared/schemas/requests';
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationDialogComponent} from "../../../../../shared/modals/confirmation-dialog/confirmation-dialog.component";
 

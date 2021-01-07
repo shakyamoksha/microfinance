@@ -13,6 +13,7 @@ public class RequestEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "REQUESTS_SEQ")
     @SequenceGenerator(sequenceName = "REQUESTS_SEQ", allocationSize = 1, name = "REQUESTS_SEQ")
+    @Column(name = "ID")
     private int id;
 
     @Column(name = "CUSTOMER_NAME")

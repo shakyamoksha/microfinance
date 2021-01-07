@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ProductsService} from '../../service/products.service';
 import {MatTableDataSource} from '@angular/material/table';
-import {Product} from '../../schema/product';
+import {Product} from '../../../../../../shared/schemas/product';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {ConfirmationDialogComponent} from '../../../../../../shared/modals/confirmation-dialog/confirmation-dialog.component';

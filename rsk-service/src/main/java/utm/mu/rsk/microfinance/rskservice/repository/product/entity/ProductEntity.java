@@ -9,6 +9,7 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRODUCTS_SEQ")
     @SequenceGenerator(sequenceName = "PRODUCTS_SEQ", allocationSize = 1, name = "PRODUCTS_SEQ")
+    @Column(name = "ID")
     private int id;
 
     @Column(name = "NAME")
