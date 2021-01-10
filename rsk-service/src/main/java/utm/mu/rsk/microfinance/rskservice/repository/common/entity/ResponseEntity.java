@@ -1,4 +1,4 @@
-package utm.mu.rsk.microfinance.rskservice.common.entity;
+package utm.mu.rsk.microfinance.rskservice.repository.common.entity;
 
 public class ResponseEntity {
 
