@@ -18,7 +18,7 @@ public interface RequestRepository extends JpaRepository<RequestEntity, Integer>
 
     Optional<RequestEntity> findById(Integer id);
 
-    Optional<RequestEntity> findByCreatedByAndAction(String userName, String action);
+    Optional<RequestEntity> findByCreatedByAndActionAndProductID(String userName, String action, Integer pId);
 
     List<RequestEntity> findAllByCreatedBy(String userId);
 

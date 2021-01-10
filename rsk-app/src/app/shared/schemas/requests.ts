@@ -9,4 +9,12 @@ export class Requests {
   public createdBy?: string = null;
   public modifiedBy?: string = null;
   public action?: string = null;
+  public applyReason?: string = null;
+  public paymentOption?: string = null;
+  public poa?: string = null;
+  public poaName?: string = null;
+  public poi?: string = null;
+  public poiName?: string = null;
+  public signature?: string = null;
+  public signatureName?: string = null;
 }

@@ -1,36 +1,116 @@
-<div class="custom-layout">
-  <br>
-  <div class="row">
-    <div class="col-5"></div>
-    <div class="col-5">
-      <div class="right">
-        <form [formGroup]="applicationForm" (ngSubmit)="applytwo(applicationForm.getRawValue())">
-          <mat-form-field class="col-90">
+<form [formGroup]="applicationForm" (ngSubmit)="apply(applicationForm.getRawValue())">
+  <div class="custom-layout">
+
+    <div class="row">
+
+      <div class="col-lg-6">
+        <h1> {{productDetails.name}} </h1>
+        <h4><em> Category: {{productDetails.type}}</em></h4>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="content-direction right">
+          <button mat-raised-button color="warn" style="margin-right: 10px" type="button" (click)="cancelRequest()"> Cancel </button>
+          <button mat-raised-button color="success" style="margin-right: 10px" [disabled]="applicationForm.invalid"> Apply </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-6">
+
+        <mat-card>
+          <p> {{productDetails.description}} </p>
+        </mat-card>
+
+        <br>
+
+        <div class="row justify-content-center">
+          <mat-form-field style="width: 100%" appearance="outline" floatLabel="always">
+            <mat-label>Reason for application</mat-label>
+            <textarea matInput formControlName="applyReason" cdkTextareaAutosize cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5"
+                      placeholder="Kindly provide details concerning the purpose of this {{productDetails.type}} Application" required></textarea>
+            <mat-error *ngIf="applicationForm.controls['applyReason'].invalid"> Reason is <strong>required</strong>! </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="row justify-content-center">
+          <mat-card>
+            <h3> Loan Amount: Rs {{productDetails.amount}} </h3>
+            <label>Repayment option:</label>
+            <mat-radio-group color="primary" class="radio-group" formControlName="paymentOption" required>
+              <mat-radio-button class="radio-button" value="6"> 6 Months </mat-radio-button>
+              <mat-radio-button class="radio-button" value="12"> 1 Year </mat-radio-button>
+              <mat-radio-button class="radio-button" value="18"> 1 Year 6 Months </mat-radio-button>
+              <mat-radio-button class="radio-button" value="24"> 2 Years </mat-radio-button>
+              <mat-error *ngIf="applicationForm.controls['paymentOption'].invalid">Payment Option Required</mat-error>
+            </mat-radio-group>
+          </mat-card>
+        </div>
+
+      </div>
+
+      <div class="col-lg-6">
+
+        <div class="row justify-content-center">
+          <mat-form-field style="width: 75%">
             <mat-label>Proof of Address</mat-label>
             <ngx-mat-file-input formControlName="poa" [accept]="'.pdf'" required></ngx-mat-file-input>
             <mat-icon matSuffix>alternate_email</mat-icon>
             <mat-error *ngIf="applicationForm.controls['poa'].invalid"> Address is <strong>required</strong>! </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="col-90">
+          <button *ngIf="applicationForm.controls['poa'].value !== null" mat-icon-button type="button"
+                  style="margin-left: 20px" matTooltip="View Document" (click)="viewFile(applicationForm.controls['poa'].value)">
+            <mat-icon>zoom_out_map</mat-icon>
+          </button>
+
+        </div>
+
+        <div class="row justify-content-center">
+          <mat-form-field style="width: 75%">
             <mat-label>Proof of Identity</mat-label>
             <ngx-mat-file-input formControlName="poi" [accept]="'.pdf'" required></ngx-mat-file-input>
             <mat-icon matSuffix>perm_identity</mat-icon>
             <mat-error *ngIf="applicationForm.controls['poi'].invalid"> Identity is <strong>required</strong>! </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="col-90">
+          <button *ngIf="applicationForm.controls['poi'].value !== null" mat-icon-button type="button"
+                  style="margin-left: 20px" matTooltip="View Document" (click)="viewFile(applicationForm.controls['poi'].value)">
+            <mat-icon>zoom_out_map</mat-icon>
+          </button>
+        </div>
+
+        <div class="row justify-content-center">
+          <mat-form-field style="width: 75%">
             <mat-label>Signature</mat-label>
             <ngx-mat-file-input formControlName="signature" [accept]="'.pdf'" required></ngx-mat-file-input>
             <mat-icon matSuffix>fingerprint</mat-icon>
             <mat-error *ngIf="applicationForm.controls['signature'].invalid"> Signature is <strong>required</strong>! </mat-error>
           </mat-form-field>
-          <br> <br>
-          <button mat-raised-button color="primary" [disabled]="applicationForm.invalid"> Apply </button>
-        </form>
+
+          <button *ngIf="applicationForm.controls['signature'].value !== null" mat-icon-button type="button"
+                  style="margin-left: 20px" matTooltip="View Document" (click)="viewFile(applicationForm.controls['signature'].value)">
+            <mat-icon>zoom_out_map</mat-icon>
+          </button>
+        </div>
+
+        <br> <br>
+
+        <div class="row justify-content-center">
+          <mat-checkbox required formControlName="conditions" color="primary" labelPosition="before">
+            I, {{userDetails.firstName + ' ' + userDetails.lastName}} , accept terms and conditions.
+          </mat-checkbox>
+          <br><br>
+          <mat-error *ngIf="applicationForm.controls['conditions'].invalid && applicationForm.controls['conditions'].dirty">
+            Validation required!
+          </mat-error>
+        </div>
 
       </div>
 
     </div>
+
   </div>
-</div>
+</form>

@@ -63,7 +63,7 @@ public class RequestsUserController {
     ) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         RequestEntity requestEntity = mapper.readValue(stringEntity, RequestEntity.class);
-        Optional<RequestEntity> isProgress = repository.findByCreatedByAndAction(requestEntity.getCreatedBy(), "PROGRESS");
+        Optional<RequestEntity> isProgress = repository.findByCreatedByAndActionAndProductID(requestEntity.getCreatedBy(), "PROGRESS", requestEntity.getProductID());
 
         if(isProgress.isPresent()){
             return this.responseService.prepareFailedResponse("An application is already in progress!");
