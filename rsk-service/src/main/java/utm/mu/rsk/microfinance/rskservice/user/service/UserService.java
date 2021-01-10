@@ -3,8 +3,8 @@ package utm.mu.rsk.microfinance.rskservice.user.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import utm.mu.rsk.microfinance.rskservice.common.entity.ResponseEntity;
-import utm.mu.rsk.microfinance.rskservice.common.notification.MailService;
+import utm.mu.rsk.microfinance.rskservice.repository.common.entity.ResponseEntity;
+import utm.mu.rsk.microfinance.rskservice.repository.common.notification.MailService;
 import utm.mu.rsk.microfinance.rskservice.user.model.User;
 import utm.mu.rsk.microfinance.rskservice.user.repository.UserRepository;
 

@@ -13,7 +13,12 @@ public interface RequestRepository extends JpaRepository<RequestEntity, Integer>
     Optional<RequestEntity> findAllByCustomerNumber(Integer customerNumber);
 
     List<RequestEntity> findAllByAccountOfficerName = null;
+
     List<RequestEntity> findAllByAccountOfficerName(String accountOfficerName);
 
     Optional<RequestEntity> findById(Integer id);
+
+    List<RequestEntity> findAllByCreatedBy(String userId);
+
+    List<RequestEntity> findAllByAction(String status);
 }

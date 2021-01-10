@@ -3,3 +3,21 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.custom-layout{
+  margin: 2% 2.5% 2% 2.5%;
+}
+
+.right{
+  float:right;
+}
+
+.left{
+  float:left;
+}
+
+.content-direction {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  margin-bottom: 10px;
+}

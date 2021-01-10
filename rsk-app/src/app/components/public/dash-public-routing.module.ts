@@ -7,17 +7,17 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'landing', pathMatch: 'full'},
       {path: 'landing',
-        loadChildren: () => import('./components/landing-page/landing-page.module').then(m => m.LandingPageModule)},
+        loadChildren: () => import('./processes/landing-page/landing-page.module').then(m => m.LandingPageModule)},
       {path: 'login',
-        loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)},
+        loadChildren: () => import('./processes/login/login.module').then(m => m.LoginModule)},
       {path: 'register',
-        loadChildren: () => import('./components/register/register.module').then(m => m.RegisterModule)},
+        loadChildren: () => import('./processes/register/register.module').then(m => m.RegisterModule)},
       {path: 'verification/:token/:user',
-        loadChildren: () => import('./components/verification/verification.module').then(m => m.VerificationModule)},
+        loadChildren: () => import('./processes/verification/verification.module').then(m => m.VerificationModule)},
       {path: 'products_customer',
-      loadChildren: () => import('./components/products/products.module').then(m => m.ProductsModule)},
+      loadChildren: () => import('./processes/products/products.module').then(m => m.ProductsModule)},
       {path: 'application/:id',
-      loadChildren: () => import('./components/application/application.module').then(m => m.ApplicationModule)}
+      loadChildren: () => import('./processes/application/application.module').then(m => m.ApplicationModule)}
     ]
   }
 ];
