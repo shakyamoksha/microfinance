@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import utm.mu.rsk.microfinance.rskservice.common.entity.ResponseModel;
-import utm.mu.rsk.microfinance.rskservice.common.services.CommonResponse;
+import utm.mu.rsk.microfinance.rskservice.repository.common.entity.ResponseModel;
+import utm.mu.rsk.microfinance.rskservice.repository.common.services.CommonResponse;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.model.RequestEntity;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.repository.RequestRepository;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.service.RequestsService;
@@ -37,7 +37,7 @@ public class RequestsUserController {
 
         RequestEntity requestEntity = new RequestEntity();
         requestEntity.setRequestStatus("CAPTURE");
-        requestEntity.setAction("APPLIED");
+        requestEntity.setAction("PROGRESS");
         requestEntity.setCustomerName(entity.getCustomerName());
         requestEntity.setCreatedBy(entity.getCreatedBy());
         requestEntity.setCustomerNumber(entity.getCustomerNumber());

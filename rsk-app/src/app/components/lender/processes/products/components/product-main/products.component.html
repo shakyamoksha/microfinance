@@ -1,11 +1,11 @@
-<mat-tab-group (selectedTabChange)="loadTabs($event)" mat-align-tabs="center">
+<mat-tab-group (selectedTabChange)="changeTab($event)" mat-align-tabs="center">
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="mat-icon-tab">view_array</mat-icon>
       View All Products
     </ng-template>
 
-    <app-products-rud *ngIf="isRud"></app-products-rud>
+    <app-products-rud [callComponent]="crudIncre" *ngIf="isRud"></app-products-rud>
   </mat-tab>
 
   <mat-tab>

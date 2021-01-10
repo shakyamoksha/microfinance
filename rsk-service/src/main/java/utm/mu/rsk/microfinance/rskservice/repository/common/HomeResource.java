@@ -1,4 +1,4 @@
-//package utm.mu.rsk.microfinance.rskservice.common;
+//package utm.mu.rsk.microfinance.rskservice.repository.common;
 //
 //import org.springframework.http.MediaType;
 //import org.springframework.web.bind.annotation.GetMapping;

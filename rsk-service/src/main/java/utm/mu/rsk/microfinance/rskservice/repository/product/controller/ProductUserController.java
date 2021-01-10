@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import utm.mu.rsk.microfinance.rskservice.common.entity.ResponseModel;
-import utm.mu.rsk.microfinance.rskservice.common.services.CommonResponse;
+import utm.mu.rsk.microfinance.rskservice.repository.common.entity.ResponseModel;
+import utm.mu.rsk.microfinance.rskservice.repository.common.services.CommonResponse;
 import utm.mu.rsk.microfinance.rskservice.repository.product.entity.ProductEntity;
 import utm.mu.rsk.microfinance.rskservice.repository.product.repository.ProductRepository;
 import utm.mu.rsk.microfinance.rskservice.repository.product.service.ProductService;
-import utm.mu.rsk.microfinance.rskservice.repository.requests.model.RequestEntity;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package utm.mu.rsk.microfinance.rskservice.common.notification;
+package utm.mu.rsk.microfinance.rskservice.repository.common.notification;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

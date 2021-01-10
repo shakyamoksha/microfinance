@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ProductsService} from '../../service/products.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {Product} from '../../../../../../shared/schemas/product';
@@ -13,18 +13,24 @@ import {ToastrService} from 'ngx-toastr';
   templateUrl: './products-rud.component.html',
   styleUrls: ['./products-rud.component.css']
 })
-export class ProductsRudComponent implements OnInit {
+export class ProductsRudComponent implements OnInit, OnChanges {
   displayedColumns: string[] = ['id', 'name', 'type', 'amount', 'update', 'delete'];
   dataSource: MatTableDataSource<Product>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @Input() callComponent;
 
   constructor(private service: ProductsService, public dialog: MatDialog, private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    console.log('rud loaded');
     this.loadRefreshTable();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.callComponent > 0) {
+      this.ngOnInit();
+    }
   }
 
   applyFilter(event: Event) {

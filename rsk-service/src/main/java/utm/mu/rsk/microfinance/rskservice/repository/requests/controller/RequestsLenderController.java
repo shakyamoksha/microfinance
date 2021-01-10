@@ -6,13 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import utm.mu.rsk.microfinance.rskservice.common.entity.ResponseModel;
-import utm.mu.rsk.microfinance.rskservice.common.services.CommonResponse;
-import utm.mu.rsk.microfinance.rskservice.repository.product.entity.ProductEntity;
+import utm.mu.rsk.microfinance.rskservice.repository.common.entity.ResponseModel;
+import utm.mu.rsk.microfinance.rskservice.repository.common.services.CommonResponse;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.model.RequestEntity;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.repository.RequestRepository;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.service.RequestsService;
 
+import javax.mail.MessagingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,12 +59,24 @@ public class RequestsLenderController {
     }
 
     @PutMapping(value = "update", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ResponseModel> updateProduct(@RequestBody RequestEntity entity) {
+    public ResponseEntity<ResponseModel> updateRequest(@RequestBody RequestEntity entity) throws MessagingException {
         if(service.updateRequest(entity, entity.getId())){
             return responseService.preparedSuccessResponseWMessage(entity,"Updated successfully!");
         } else {
             return responseService.prepareFailedResponse("Unable to update");
         }
+    }
+
+    @GetMapping(value = "getRequestsByStatus/{status}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<ResponseModel> getRequestsByStatus(@PathVariable String status){
+        List<RequestEntity> requestEntities = service.getRequestsByStatus(status);
+
+        if(!requestEntities.isEmpty()){
+            return responseService.preparedSuccessResponseWMessage(requestEntities,"Requests retrieved successfully");
+        } else {
+            return responseService.prepareFailedResponse("No requests found!");
+        }
+
     }
 
 }

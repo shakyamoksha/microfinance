@@ -3,8 +3,8 @@ import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute} from '@angular/router';
 import {ApplicationService} from '../service/application.service';
 import {Requests} from '../../../../../shared/schemas/requests';
-import {MatDialog} from "@angular/material/dialog";
-import {ConfirmationDialogComponent} from "../../../../../shared/modals/confirmation-dialog/confirmation-dialog.component";
+import {MatDialog} from '@angular/material/dialog';
+import {ConfirmationDialogComponent} from '../../../../../shared/modals/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-application',
@@ -32,6 +32,7 @@ export class ApplicationComponent implements OnInit {
       customerNumber: this.userDetails[`id`],
       modifiedBy: this.userDetails[`userName`],
       productID: this.productDetails[`id`],
+      action: 'PROGRESS'
     };
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: `Are you sure to apply?`
@@ -42,4 +43,5 @@ export class ApplicationComponent implements OnInit {
       }
     });
   }
+
 }

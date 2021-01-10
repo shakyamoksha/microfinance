@@ -15,3 +15,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .left{
   float:left;
 }
+
+.content-direction {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  margin-bottom: 10px;
+}

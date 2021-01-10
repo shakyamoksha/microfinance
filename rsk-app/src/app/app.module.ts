@@ -13,13 +13,16 @@ import {RouterModule} from '@angular/router';
 import { DashLenderComponent } from './components/lender/dash-lender/dash-lender.component';
 import { VerificationComponent } from './components/public/processes/verification/component/verification.component';
 import {ToastrModule} from 'ngx-toastr';
+import {ConfirmationDialogComponent} from './shared/modals/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
+  entryComponents: [ConfirmationDialogComponent],
   declarations: [
     AppComponent,
     DashPublicComponent,
     DashLenderComponent,
-    VerificationComponent
+    VerificationComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

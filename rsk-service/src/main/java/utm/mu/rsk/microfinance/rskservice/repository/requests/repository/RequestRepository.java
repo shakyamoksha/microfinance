@@ -20,4 +20,5 @@ public interface RequestRepository extends JpaRepository<RequestEntity, Integer>
 
     List<RequestEntity> findAllByCreatedBy(String userId);
 
+    List<RequestEntity> findAllByAction(String status);
 }

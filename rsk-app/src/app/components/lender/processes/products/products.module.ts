@@ -7,18 +7,13 @@ import {MaterialModule} from '../../../../shared/material-module';
 import {ProductsRudComponent} from './components/products-rud/products-rud.component';
 import {ProductsCreateComponent} from './components/products-create/products-create.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {ConfirmationDialogComponent} from '../../../../shared/modals/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
-  entryComponents: [
-    ConfirmationDialogComponent
-  ],
   declarations: [
     ProductsComponent,
     ProductsRudComponent,
-    ProductsCreateComponent,
-    ConfirmationDialogComponent
+    ProductsCreateComponent
   ],
   imports: [
     CommonModule,

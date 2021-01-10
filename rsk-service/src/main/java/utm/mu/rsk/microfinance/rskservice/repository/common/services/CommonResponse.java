@@ -1,11 +1,11 @@
-package utm.mu.rsk.microfinance.rskservice.common.services;
+package utm.mu.rsk.microfinance.rskservice.repository.common.services;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import utm.mu.rsk.microfinance.rskservice.common.entity.ResponseModel;
+import utm.mu.rsk.microfinance.rskservice.repository.common.entity.ResponseModel;
 
 import java.util.ArrayList;
 import java.util.List;

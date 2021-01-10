@@ -12,7 +12,7 @@ const routes: Routes = [
       loadChildren: () => import('./processes/customers/customers.module').then(m => m.CustomersModule)},
       {path: 'products',
       loadChildren: () => import('./processes/products/products.module').then(m => m.ProductsModule)},
-      {path: 'lender-application/:id',
+      {path: 'lender-application/:id/:idd',
       loadChildren: () => import('./processes/application/application.module').then(m => m.ApplicationModule)}
     ]
   }

@@ -10,6 +10,7 @@ export class ProductsComponent implements OnInit {
 
   isCreate: boolean;
   isRud: boolean;
+  crudIncre = 0;
 
   constructor() { }
 
@@ -17,10 +18,11 @@ export class ProductsComponent implements OnInit {
     this.isRud = true;
   }
 
-  loadTabs(tabChangeEvent: MatTabChangeEvent) {
-    if (tabChangeEvent.index === 0) {
+  changeTab($event: MatTabChangeEvent) {
+    if ($event.index === 0) {
+      this.crudIncre++;
       this.isRud = true;
-    } else if (tabChangeEvent.index === 1) {
+    } else if ($event.index === 1) {
       this.isCreate = true;
     }
   }
