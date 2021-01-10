@@ -4,7 +4,31 @@
     <div class="col-5"></div>
     <div class="col-5">
       <div class="right">
-        <button mat-raised-button color="primary" (click)="apply()"> Apply </button>
+        <form [formGroup]="applicationForm" (ngSubmit)="applytwo(applicationForm.getRawValue())">
+          <mat-form-field class="col-90">
+            <mat-label>Proof of Address</mat-label>
+            <ngx-mat-file-input formControlName="poa" [accept]="'.pdf'" required></ngx-mat-file-input>
+            <mat-icon matSuffix>alternate_email</mat-icon>
+            <mat-error *ngIf="applicationForm.controls['poa'].invalid"> Address is <strong>required</strong>! </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-90">
+            <mat-label>Proof of Identity</mat-label>
+            <ngx-mat-file-input formControlName="poi" [accept]="'.pdf'" required></ngx-mat-file-input>
+            <mat-icon matSuffix>perm_identity</mat-icon>
+            <mat-error *ngIf="applicationForm.controls['poi'].invalid"> Identity is <strong>required</strong>! </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="col-90">
+            <mat-label>Signature</mat-label>
+            <ngx-mat-file-input formControlName="signature" [accept]="'.pdf'" required></ngx-mat-file-input>
+            <mat-icon matSuffix>fingerprint</mat-icon>
+            <mat-error *ngIf="applicationForm.controls['signature'].invalid"> Signature is <strong>required</strong>! </mat-error>
+          </mat-form-field>
+          <br> <br>
+          <button mat-raised-button color="primary" [disabled]="applicationForm.invalid"> Apply </button>
+        </form>
+
       </div>
 
     </div>

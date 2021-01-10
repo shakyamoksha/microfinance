@@ -53,6 +53,34 @@ public class RequestEntity {
     @Column(name = "ACTION")
     private String action;
 
+    @Lob
+    @Column(name = "APPLY_REASON")
+    private String applyReason;
+
+    @Column(name = "PAYMENT_OPTION")
+    private Integer paymentOption;
+
+    @Lob
+    @Column(name = "POA")
+    private String poa;
+
+    @Column(name = "POA_NAME")
+    private String poaName;
+
+    @Lob
+    @Column(name = "POI")
+    private String poi;
+
+    @Column(name = "POI_NAME")
+    private String poiName;
+
+    @Lob
+    @Column(name = "SIGNATURE")
+    private String signature;
+
+    @Column(name = "SIGNATURE_NAME")
+    private String signatureName;
+
     public int getId() {
         return id;
     }
@@ -148,5 +176,70 @@ public class RequestEntity {
     public void setAction(String action) {
         this.action = action;
     }
+
+    public String getApplyReason() {
+        return applyReason;
+    }
+
+    public void setApplyReason(String applyReason) {
+        this.applyReason = applyReason;
+    }
+
+    public Integer getPaymentOption() {
+        return paymentOption;
+    }
+
+    public void setPaymentOption(Integer paymentOption) {
+        this.paymentOption = paymentOption;
+    }
+
+    public String getPoa() {
+        return poa;
+    }
+
+    public void setPoa(String poa) {
+        this.poa = poa;
+    }
+
+    public String getPoaName() {
+        return poaName;
+    }
+
+    public void setPoaName(String poaName) {
+        this.poaName = poaName;
+    }
+
+    public String getPoi() {
+        return poi;
+    }
+
+    public void setPoi(String poi) {
+        this.poi = poi;
+    }
+
+    public String getPoiName() {
+        return poiName;
+    }
+
+    public void setPoiName(String poiName) {
+        this.poiName = poiName;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public String getSignatureName() {
+        return signatureName;
+    }
+
+    public void setSignatureName(String signatureName) {
+        this.signatureName = signatureName;
+    }
+
 }
 

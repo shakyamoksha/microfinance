@@ -1,5 +1,6 @@
 package utm.mu.rsk.microfinance.rskservice.repository.requests.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import utm.mu.rsk.microfinance.rskservice.repository.common.entity.ResponseModel;
 import utm.mu.rsk.microfinance.rskservice.repository.common.services.CommonResponse;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.model.RequestEntity;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.repository.RequestRepository;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.service.RequestsService;
 
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +35,8 @@ public class RequestsUserController {
     @Autowired
     CommonResponse responseService;
 
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy-HH-mm-ss");
+
     @PostMapping(value = "initiate", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ResponseModel> initiateRequest(@RequestBody RequestEntity entity){
         logger.info("Creating new Request Record");
@@ -46,6 +52,25 @@ public class RequestsUserController {
         repository.save(requestEntity);
 
         return responseService.preparedSuccessResponseWMessage("","Request initiated!");
+    }
+
+    @PostMapping(value="create", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {"multipart/form-data"})
+    public ResponseEntity<ResponseModel> createRequest(
+            @RequestParam("request") String stringEntity,
+            @RequestParam(value = "poa", required = true) MultipartFile poa,
+            @RequestParam(value = "poi", required = true) MultipartFile poi,
+            @RequestParam(value = "signature", required = true) MultipartFile signature
+    ) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        RequestEntity requestEntity = mapper.readValue(stringEntity, RequestEntity.class);
+        Optional<RequestEntity> isProgress = repository.findByCreatedByAndAction(requestEntity.getCreatedBy(), "PROGRESS");
+
+        if(isProgress.isPresent()){
+            return this.responseService.prepareFailedResponse("An application is already in progress!");
+        } else {
+            this.service.createRequest(requestEntity, poa, poi, signature);
+            return responseService.preparedSuccessResponseWMessage("","Request has been initiated!");
+        }
     }
 
     @GetMapping(value = "getRequestsById/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})

@@ -9,7 +9,7 @@ logging:
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
-    password: Dimethyltryptamine
+    password: DIMETHYLTRYPTAMINE
     url: jdbc:oracle:thin:@localhost:1521:XE
     username: rskmfinance
   jpa:
