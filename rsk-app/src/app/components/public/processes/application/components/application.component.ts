@@ -6,6 +6,7 @@ import {Requests} from '../../../../../shared/schemas/requests';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmationDialogComponent} from '../../../../../shared/modals/confirmation-dialog/confirmation-dialog.component';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {DocumentViewComponent} from '../../../../../shared/modals/document-view/document-view.component';
 
 @Component({
   selector: 'app-application',
@@ -111,7 +112,15 @@ export class ApplicationComponent implements OnInit {
   }
 
   viewFile(value: any) {
-    // const dialogRef = this.dialog.open(, value);
-    console.log(value.files[0]);
+    if (value) {
+      this.dialog.open(DocumentViewComponent, {
+        width: '500px',
+        data: value.files[0]
+      });
+      this.toastr.success('File loaded successfully!');
+    } else {
+      this.toastr.error('An error occurred!');
+    }
+
   }
 }

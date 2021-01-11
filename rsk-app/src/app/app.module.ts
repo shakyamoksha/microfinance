@@ -14,15 +14,18 @@ import { DashLenderComponent } from './components/lender/dash-lender/dash-lender
 import { VerificationComponent } from './components/public/processes/verification/component/verification.component';
 import {ToastrModule} from 'ngx-toastr';
 import {ConfirmationDialogComponent} from './shared/modals/confirmation-dialog/confirmation-dialog.component';
+import {DocumentViewComponent} from './shared/modals/document-view/document-view.component';
+import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
 
 @NgModule({
-  entryComponents: [ConfirmationDialogComponent],
+  entryComponents: [ConfirmationDialogComponent, DocumentViewComponent],
   declarations: [
     AppComponent,
     DashPublicComponent,
     DashLenderComponent,
     VerificationComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    DocumentViewComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import {ConfirmationDialogComponent} from './shared/modals/confirmation-dialog/c
     AppRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    NgxExtendedPdfViewerModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true}],
   bootstrap: [AppComponent]
