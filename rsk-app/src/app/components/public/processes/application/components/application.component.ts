@@ -52,25 +52,6 @@ export class ApplicationComponent implements OnInit {
     this.service.getUser(sessionStorage.getItem('user')).subscribe(user => {this.userDetails = user; });
   }
 
-  applyTwo() {
-    const params: Requests = {
-      customerName: this.userDetails[`firstName`] + ' ' + this.userDetails[`lastName`],
-      createdBy: this.userDetails[`userName`],
-      customerNumber: this.userDetails[`id`],
-      modifiedBy: this.userDetails[`userName`],
-      productID: this.productDetails[`id`],
-      action: 'PROGRESS'
-    };
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: `Are you sure to apply?`
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        this.service.applyReqquest(params).subscribe(data => {this.toastr.success(data.status); });
-      }
-    });
-  }
-
   apply(rawValue: any) {
     const formData = new FormData();
     const requests = JSON.stringify({
@@ -95,15 +76,13 @@ export class ApplicationComponent implements OnInit {
         this.service.createRequest(formData).subscribe(data => {
           if (data.statusCode === '200') {
             this.toastr.success(data.status);
-            this.router.navigate(['products_customer']);
+            this.router.navigate(['requests_customer']);
           } else if (data.statusCode === '400') {
             this.toastr.error(data.error);
           }
         });
       }
     });
-
-
   }
 
   cancelRequest() {

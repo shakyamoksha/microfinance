@@ -15,7 +15,7 @@ import { VerificationComponent } from './components/public/processes/verificatio
 import {ToastrModule} from 'ngx-toastr';
 import {ConfirmationDialogComponent} from './shared/modals/confirmation-dialog/confirmation-dialog.component';
 import {DocumentViewComponent} from './shared/modals/document-view/document-view.component';
-import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
+import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   entryComponents: [ConfirmationDialogComponent, DocumentViewComponent],

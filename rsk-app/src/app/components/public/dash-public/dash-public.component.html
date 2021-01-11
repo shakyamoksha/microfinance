@@ -28,13 +28,17 @@
 
       <span class="spacer"></span>
 
+      <button mat-button routerLink="/requests_customer" matTooltip="Requests"
+              *ngIf="this.authenticateService.isLoggedIn()">
+        <!--        <mat-icon>person_add</mat-icon>-->
+        Requests
+      </button>
+
       <button mat-button routerLink="/products_customer" matTooltip="Products"
               *ngIf="this.authenticateService.isLoggedIn()">
 <!--        <mat-icon>person_add</mat-icon>-->
         Products
       </button>
-
-      <span class="spacer"></span>
 
       <button mat-button routerLink="/register" matTooltip="Register"
               *ngIf="!this.authenticateService.isLoggedIn()">
