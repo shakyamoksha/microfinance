@@ -23,4 +23,8 @@ export class ApplicationService {
     return this.service.get(`user/getbyuser`, params);
   }
 
+  getRequestByID(params): Observable<any> {
+    return this.service.get(`request/getRequestsById`, params);
+  }
+
 }

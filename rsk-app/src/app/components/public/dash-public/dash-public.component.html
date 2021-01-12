@@ -6,6 +6,7 @@
                [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
+
       <a mat-list-item routerLink="/register" *ngIf="!this.authenticateService.isLoggedIn()">
         <mat-icon>person_add</mat-icon>
         Register
@@ -30,13 +31,13 @@
 
       <button mat-button routerLink="/requests_customer" matTooltip="Requests"
               *ngIf="this.authenticateService.isLoggedIn()">
-        <!--        <mat-icon>person_add</mat-icon>-->
+        <mat-icon>table_rows</mat-icon>
         Requests
       </button>
 
       <button mat-button routerLink="/products_customer" matTooltip="Products"
               *ngIf="this.authenticateService.isLoggedIn()">
-<!--        <mat-icon>person_add</mat-icon>-->
+        <mat-icon>euro</mat-icon>
         Products
       </button>
 

@@ -82,6 +82,8 @@ public class RequestsService {
         requestEntity.setCustomerNumber(entity.getCustomerNumber());
         requestEntity.setModifiedBy(entity.getModifiedBy());
         requestEntity.setProductID(entity.getProductID());
+        requestEntity.setApplyReason(entity.getApplyReason());
+        requestEntity.setPaymentOption(entity.getPaymentOption());
         repository.save(requestEntity);
     }
     

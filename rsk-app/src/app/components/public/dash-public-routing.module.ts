@@ -16,7 +16,7 @@ const routes: Routes = [
         loadChildren: () => import('./processes/verification/verification.module').then(m => m.VerificationModule)},
       {path: 'products_customer',
       loadChildren: () => import('./processes/products/products.module').then(m => m.ProductsModule)},
-      {path: 'application/:id',
+      {path: 'application/:id/:idd',
       loadChildren: () => import('./processes/application/application.module').then(m => m.ApplicationModule)},
       {path: 'requests_customer',
       loadChildren: () => import('./processes/requests/requests.module').then((m => m.RequestsModule))}

@@ -22,6 +22,6 @@ export class ProductsComponent implements OnInit {
   }
 
   navigateToApplication(id: any) {
-    this.router.navigate([`application`, id]);
+    this.router.navigate([`application`, id, 0]);
   }
 }

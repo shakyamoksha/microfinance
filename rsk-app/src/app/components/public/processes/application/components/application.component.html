@@ -10,8 +10,9 @@
 
       <div class="col-lg-6">
         <div class="content-direction right">
-          <button mat-raised-button color="warn" style="margin-right: 10px" type="button" (click)="cancelRequest()"> Cancel </button>
-          <button mat-raised-button color="success" style="margin-right: 10px" [disabled]="applicationForm.invalid"> Apply </button>
+          <button *ngIf="!readonly" mat-raised-button color="warn" style="margin-right: 10px" type="button" (click)="cancelRequest()"> Cancel </button>
+          <button *ngIf="readonly" mat-raised-button color="warn" style="margin-right: 10px" type="button" (click)="navigateBack()"> Back </button>
+          <button *ngIf="!readonly" mat-raised-button color="success" style="margin-right: 10px" [disabled]="applicationForm.invalid"> Apply </button>
         </div>
       </div>
     </div>
@@ -40,11 +41,8 @@
             <h3> Loan Amount: Rs {{productDetails.amount}} </h3>
             <label>Repayment option:</label>
             <mat-radio-group color="primary" class="radio-group" formControlName="paymentOption" required>
-              <mat-radio-button class="radio-button" value="6"> 6 Months </mat-radio-button>
-              <mat-radio-button class="radio-button" value="12"> 1 Year </mat-radio-button>
-              <mat-radio-button class="radio-button" value="18"> 1 Year 6 Months </mat-radio-button>
-              <mat-radio-button class="radio-button" value="24"> 2 Years </mat-radio-button>
-              <mat-error *ngIf="applicationForm.controls['paymentOption'].invalid">Payment Option Required</mat-error>
+              <mat-radio-button class="radio-button" *ngFor="let payment of paymentOption" [value]="payment.id"> {{ payment.name }} </mat-radio-button>
+<!--              <mat-error *ngIf="applicationForm.controls['paymentOption'].invalid">Payment Option Required</mat-error>-->
             </mat-radio-group>
           </mat-card>
         </div>
@@ -61,8 +59,13 @@
             <mat-error *ngIf="applicationForm.controls['poa'].invalid"> Address is <strong>required</strong>! </mat-error>
           </mat-form-field>
 
-          <button *ngIf="applicationForm.controls['poa'].value !== null" mat-icon-button type="button"
+          <button *ngIf="applicationForm.controls['poa'].value !== null && !readonly" mat-icon-button type="button"
                   style="margin-left: 20px" matTooltip="View Document" (click)="viewFile(applicationForm.controls['poa'].value)">
+            <mat-icon>zoom_out_map</mat-icon>
+          </button>
+
+          <button *ngIf="applicationForm.controls['poa'].value !== null && readonly" mat-icon-button type="button"
+                  style="margin-left: 20px" matTooltip="View Document" (click)="viewFileReadOnly(applicationForm.controls['poa'].value)">
             <mat-icon>zoom_out_map</mat-icon>
           </button>
 
@@ -76,8 +79,13 @@
             <mat-error *ngIf="applicationForm.controls['poi'].invalid"> Identity is <strong>required</strong>! </mat-error>
           </mat-form-field>
 
-          <button *ngIf="applicationForm.controls['poi'].value !== null" mat-icon-button type="button"
+          <button *ngIf="applicationForm.controls['poi'].value !== null && !readonly" mat-icon-button type="button"
                   style="margin-left: 20px" matTooltip="View Document" (click)="viewFile(applicationForm.controls['poi'].value)">
+            <mat-icon>zoom_out_map</mat-icon>
+          </button>
+
+          <button *ngIf="applicationForm.controls['poi'].value !== null && readonly" mat-icon-button type="button"
+                  style="margin-left: 20px" matTooltip="View Document" (click)="viewFileReadOnly(applicationForm.controls['poi'].value)">
             <mat-icon>zoom_out_map</mat-icon>
           </button>
         </div>
@@ -90,15 +98,20 @@
             <mat-error *ngIf="applicationForm.controls['signature'].invalid"> Signature is <strong>required</strong>! </mat-error>
           </mat-form-field>
 
-          <button *ngIf="applicationForm.controls['signature'].value !== null" mat-icon-button type="button"
+          <button *ngIf="applicationForm.controls['signature'].value !== null && !readonly" mat-icon-button type="button"
                   style="margin-left: 20px" matTooltip="View Document" (click)="viewFile(applicationForm.controls['signature'].value)">
+            <mat-icon>zoom_out_map</mat-icon>
+          </button>
+
+          <button *ngIf="applicationForm.controls['signature'].value !== null && readonly" mat-icon-button type="button"
+                  style="margin-left: 20px" matTooltip="View Document" (click)="viewFileReadOnly(applicationForm.controls['signature'].value)">
             <mat-icon>zoom_out_map</mat-icon>
           </button>
         </div>
 
         <br> <br>
 
-        <div class="row justify-content-center">
+        <div *ngIf="!readonly" class="row justify-content-center">
           <mat-checkbox required formControlName="conditions" color="primary" labelPosition="before">
             I, {{userDetails.firstName + ' ' + userDetails.lastName}} , accept terms and conditions.
           </mat-checkbox>

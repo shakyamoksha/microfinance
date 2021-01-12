@@ -18,6 +18,13 @@ export class ApplicationComponent implements OnInit {
   userDetails = [];
   applicationForm: FormGroup;
   public file;
+  readonly: boolean;
+  paymentOption: Array<any> = [
+    {id: 6, name: '6 Months'},
+    {id: 12, name: '1 Year'},
+    {id: 18, name: '1.5 Year'},
+    {id: 24, name: '2 Years'},
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,9 +38,14 @@ export class ApplicationComponent implements OnInit {
   ngOnInit(): void {
     this.initializeServices();
     this.initializeForm();
+    if (this.route.snapshot.params[('idd')] !== '0') {
+      this.readonly = true;
+      this.loadReadOnly();
+    }
   }
 
   initializeForm() {
+    this.readonly = false;
     this.applicationForm = this.formBuilder.group({
       applyReason: ['', [Validators.required]],
       paymentOption: ['6', [Validators.required]],
@@ -50,6 +62,23 @@ export class ApplicationComponent implements OnInit {
   initializeServices() {
     this.service.getProductById(this.route.snapshot.params[('id')]).subscribe(data => {this.productDetails = data[`result`][0]; });
     this.service.getUser(sessionStorage.getItem('user')).subscribe(user => {this.userDetails = user; });
+  }
+
+  loadReadOnly() {
+    this.applicationForm.get('applyReason').disable();
+    this.applicationForm.get('paymentOption').disable();
+    this.applicationForm.get('poa').disable();
+    this.applicationForm.get('poi').disable();
+    this.applicationForm.get('signature').disable();
+    this.service.getRequestByID(this.route.snapshot.params[('idd')]).subscribe(data => {
+      this.applicationForm.patchValue({
+        applyReason: data.result[0].applyReason,
+        paymentOption: data.result[0].paymentOption,
+        poa: 'data:application/pdf;base64,' + data.result[0].poa,
+        poi: 'data:application/pdf;base64,' + data.result[0].poi,
+        signature: 'data:application/pdf;base64,' + data.result[0].signature
+      });
+    });
   }
 
   apply(rawValue: any) {
@@ -100,6 +129,21 @@ export class ApplicationComponent implements OnInit {
     } else {
       this.toastr.error('An error occurred!');
     }
+  }
 
+  viewFileReadOnly(value: any) {
+    if (value) {
+      this.dialog.open(DocumentViewComponent, {
+        width: '500px',
+        data: value
+      });
+      this.toastr.success('File loaded successfully!');
+    } else {
+      this.toastr.error('An error occurred!');
+    }
+  }
+
+  navigateBack() {
+    this.router.navigate(['requests_customer']);
   }
 }

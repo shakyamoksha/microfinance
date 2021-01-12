@@ -7,6 +7,10 @@ logging:
     org.hibernate.type: debug
 
 spring:
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     password: DIMETHYLTRYPTAMINE
