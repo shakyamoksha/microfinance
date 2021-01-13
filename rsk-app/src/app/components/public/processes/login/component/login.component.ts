@@ -4,6 +4,7 @@ import {User} from '../../../../../shared/schemas/user';
 import {AuthenticateService} from '../../../../../service/auth/auth-service';
 import {Router} from '@angular/router';
 import {LoginService} from '../service/login.service';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,13 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   formSubmitted: boolean;
 
-  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticateService, private service: LoginService, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private authenticationService: AuthenticateService,
+    private service: LoginService,
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.loginBuilder();
@@ -52,11 +59,14 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('user', login.userName);
       sessionStorage.setItem('token', data.jwt);
       sessionStorage.setItem('role', role);
-      if (data !== null) {
-        if (role === 'ROLE_USER') {this.router.navigate(['products_customer']);
-        } else if (role === 'ROLE_ADMIN') {this.router.navigate(['lender']); }
+      if (role === 'ROLE_USER') {
+        this.router.navigate(['products_customer']);
+        this.toastr.success(`Authenticated! Welcome ${login.userName}`);
+      } else if (role === 'ROLE_ADMIN') {
+        this.router.navigate(['lender']);
+        this.toastr.info(`Authenticated! Welcome Admin`);
       }
-    });
+    }, error => {this.toastr.error('Authentication failed, try again!'); });
   }
 
 }

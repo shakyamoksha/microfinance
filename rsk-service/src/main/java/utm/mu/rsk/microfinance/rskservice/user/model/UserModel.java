@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "USERS")
-public class User {
+public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ")
@@ -152,4 +152,6 @@ public class User {
     public void setToken(String token) {
         this.token = token;
     }
+
+
 }

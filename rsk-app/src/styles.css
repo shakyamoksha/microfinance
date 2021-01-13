@@ -41,3 +41,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   flex-direction: row-reverse;
   margin-bottom: 10px;
 }
+
+/* For Spinner */
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: darkred !important;
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: darkred;
+}

@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import utm.mu.rsk.microfinance.rskservice.user.model.User;
+import utm.mu.rsk.microfinance.rskservice.user.model.UserModel;
 import utm.mu.rsk.microfinance.rskservice.user.service.UserDetailsService;
 
 @RestController
@@ -25,16 +25,16 @@ public class AuthController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/authenticate")
-    public ResponseEntity<AuthResponse> createAuthToken(@RequestBody User user) throws Exception {
+    public ResponseEntity<AuthResponse> createAuthToken(@RequestBody UserModel userModel) throws Exception {
         Object data;
 
         try {
-            data = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
+            data = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userModel.getUserName(), userModel.getPassword()));
         } catch (BadCredentialsException e) {
             throw new Exception("Incorrect username or password!", e);
         }
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUserName());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(userModel.getUserName());
         final String jwt = jwtUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthResponse(jwt, data));

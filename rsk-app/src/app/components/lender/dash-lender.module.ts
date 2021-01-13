@@ -7,7 +7,7 @@ import {MaterialModule} from '../../shared/material-module';
 
 
 @NgModule({
-  declarations: [CustomersComponent],
+  declarations: [],
   imports: [
     CommonModule,
     DashLenderRoutingModule,

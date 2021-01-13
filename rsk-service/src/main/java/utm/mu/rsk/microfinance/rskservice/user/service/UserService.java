@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import utm.mu.rsk.microfinance.rskservice.repository.common.entity.ResponseEntity;
 import utm.mu.rsk.microfinance.rskservice.repository.common.notification.MailService;
-import utm.mu.rsk.microfinance.rskservice.user.model.User;
+import utm.mu.rsk.microfinance.rskservice.user.model.UserModel;
 import utm.mu.rsk.microfinance.rskservice.user.repository.UserRepository;
 
 import javax.mail.MessagingException;
@@ -32,36 +32,36 @@ public class UserService {
         return sb.toString();
     }
 
-    public List<User> retrieveAllUsers(){
+    public List<UserModel> retrieveAllUsers(){
         return this.dao.findAll();
     }
 
-    public User addUser(User user) throws MessagingException {
+    public UserModel addUser(UserModel userModel) throws MessagingException {
 
         int strength = 10; // Work Factor of BCRYPT
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(strength, new SecureRandom());
-        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+        String encodedPassword = bCryptPasswordEncoder.encode(userModel.getPassword());
 
-        user.setToken(randomString(25));
-        user.setRoles("ROLE_USER");
-        user.setActive(false);
-        user.setPassword(encodedPassword);
-        mailService.sendMail(user.getEmail(),
+        userModel.setToken(randomString(25));
+        userModel.setRoles("ROLE_USER");
+        userModel.setActive(false);
+        userModel.setPassword(encodedPassword);
+        mailService.sendMail(userModel.getEmail(),
                 "Verify Account - Microfinance",
-                "Dear " + user.getFirstName() + " " + user.getLastName() + ", <br>" +
-                        "<a href=\"http://localhost:4200/verification/"+ user.getToken() + "/"+ user.getUserName() +"\">Click to verify your account</a>");
-        return this.dao.save(user);
+                "Dear " + userModel.getFirstName() + " " + userModel.getLastName() + ", <br>" +
+                        "<a href=\"http://localhost:4200/verification/"+ userModel.getToken() + "/"+ userModel.getUserName() +"\">Click to verify your account</a>");
+        return this.dao.save(userModel);
     }
 
-    public Optional<User> findByUsername(String username) {
+    public Optional<UserModel> findByUsername(String username) {
         return dao.findByUserName(username);
     }
 
-    public ResponseEntity verfiyUser(User user) {
+    public ResponseEntity verfiyUser(UserModel userModel) {
         ResponseEntity responseEntity = new ResponseEntity();
-        User entity = new User();
-        Optional<User> data = dao.findByUserNameAndTokenAndActiveFalse(user.getUserName(), user.getToken());
-        Optional<User> alreadyActive = dao.findByUserNameAndActiveTrue(user.getUserName());
+        UserModel entity = new UserModel();
+        Optional<UserModel> data = dao.findByUserNameAndTokenAndActiveFalse(userModel.getUserName(), userModel.getToken());
+        Optional<UserModel> alreadyActive = dao.findByUserNameAndActiveTrue(userModel.getUserName());
 
         if(data.isPresent()) {
             entity = data.get();

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import utm.mu.rsk.microfinance.rskservice.user.model.User;
+import utm.mu.rsk.microfinance.rskservice.user.model.UserModel;
 import utm.mu.rsk.microfinance.rskservice.user.repository.UserRepository;
 
 import java.util.Optional;
@@ -18,7 +18,7 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        Optional<User> user = dao.findByUserName(userName);
+        Optional<UserModel> user = dao.findByUserName(userName);
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
 
         return user.map(utm.mu.rsk.microfinance.rskservice.user.service.UserDetails::new).get();

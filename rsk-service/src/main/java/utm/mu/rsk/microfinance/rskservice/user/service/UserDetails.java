@@ -2,9 +2,8 @@ package utm.mu.rsk.microfinance.rskservice.user.service;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import utm.mu.rsk.microfinance.rskservice.user.model.User;
+import utm.mu.rsk.microfinance.rskservice.user.model.UserModel;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -17,11 +16,11 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private boolean active;
     private List<GrantedAuthority> authorities;
 
-    public UserDetails(User user) {
-        this.userName = user.getUserName();
-        this.password = user.getPassword();
-        this.active = user.isActive();
-        this.authorities = Arrays.stream(user.getRoles().split(","))
+    public UserDetails(UserModel userModel) {
+        this.userName = userModel.getUserName();
+        this.password = userModel.getPassword();
+        this.active = userModel.isActive();
+        this.authorities = Arrays.stream(userModel.getRoles().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
