@@ -49,6 +49,20 @@ public class UserModel {
     @Column(name = "TOKEN")
     private String token;
 
+    @Lob
+    @Column(name = "POA")
+    private String poa;
+
+    @Column(name = "POA_NAME")
+    private String poaName;
+
+    @Lob
+    @Column(name = "POI")
+    private String poi;
+
+    @Column(name = "POI_NAME")
+    private String poiName;
+
     public int getId() {
         return id;
     }
@@ -153,5 +167,35 @@ public class UserModel {
         this.token = token;
     }
 
+    public String getPoa() {
+        return poa;
+    }
 
+    public void setPoa(String poa) {
+        this.poa = poa;
+    }
+
+    public String getPoaName() {
+        return poaName;
+    }
+
+    public void setPoaName(String poaName) {
+        this.poaName = poaName;
+    }
+
+    public String getPoi() {
+        return poi;
+    }
+
+    public void setPoi(String poi) {
+        this.poi = poi;
+    }
+
+    public String getPoiName() {
+        return poiName;
+    }
+
+    public void setPoiName(String poiName) {
+        this.poiName = poiName;
+    }
 }
