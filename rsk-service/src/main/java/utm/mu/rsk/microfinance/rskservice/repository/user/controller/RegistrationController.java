@@ -1,10 +1,10 @@
-package utm.mu.rsk.microfinance.rskservice.user.controller;
+package utm.mu.rsk.microfinance.rskservice.repository.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import utm.mu.rsk.microfinance.rskservice.repository.common.entity.ResponseEntity;
-import utm.mu.rsk.microfinance.rskservice.user.model.UserModel;
-import utm.mu.rsk.microfinance.rskservice.user.service.UserService;
+import utm.mu.rsk.microfinance.rskservice.repository.user.model.UserModel;
+import utm.mu.rsk.microfinance.rskservice.repository.user.service.UserService;
 
 import javax.mail.MessagingException;
 import java.util.Optional;

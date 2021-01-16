@@ -1,8 +1,8 @@
-package utm.mu.rsk.microfinance.rskservice.user.repository;
+package utm.mu.rsk.microfinance.rskservice.repository.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import utm.mu.rsk.microfinance.rskservice.user.model.UserModel;
+import utm.mu.rsk.microfinance.rskservice.repository.user.model.UserModel;
 
 import java.util.List;
 import java.util.Optional;

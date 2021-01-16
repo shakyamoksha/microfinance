@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import utm.mu.rsk.microfinance.rskservice.user.model.UserModel;
-import utm.mu.rsk.microfinance.rskservice.user.service.UserDetailsService;
+import utm.mu.rsk.microfinance.rskservice.repository.user.model.UserModel;
+import utm.mu.rsk.microfinance.rskservice.repository.user.service.UserDetailsService;
 
 @RestController
 public class AuthController {

@@ -1,4 +1,4 @@
-package utm.mu.rsk.microfinance.rskservice.user.model;
+package utm.mu.rsk.microfinance.rskservice.repository.user.model;
 
 
 import javax.persistence.*;

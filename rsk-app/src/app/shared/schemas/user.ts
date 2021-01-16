@@ -1,5 +1,4 @@
 export class User {
-
   public id?: number = null;
   public userName?: string = null;
   public password?: string = null;
@@ -13,5 +12,8 @@ export class User {
   public roles?: string = null;
   public active?: boolean = null;
   public token?: string = null;
-
+  public poa?: string = null;
+  public poaName?: string = null;
+  public poi?: string = null;
+  public poiName?: string = null;
 }

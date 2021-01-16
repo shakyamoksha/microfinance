@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../../../../../service/http/http.service';
+import {Observable} from 'rxjs';
 
 const SERVER_URL = 'register';
 
@@ -10,6 +11,6 @@ export class RegistrationService {
 
   registerUser(data) {return this.service.post(`${SERVER_URL}/add`, data); }
 
-  verifyUser(data) {return this.service.post(`${SERVER_URL}/verification`, data); }
+  verifyUser(data): Observable<any> {return this.service.post(`${SERVER_URL}/verification`, data); }
 
 }

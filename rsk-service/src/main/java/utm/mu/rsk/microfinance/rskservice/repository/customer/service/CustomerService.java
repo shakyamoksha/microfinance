@@ -5,11 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import utm.mu.rsk.microfinance.rskservice.repository.customer.repository.CustomerRepository;
 import utm.mu.rsk.microfinance.rskservice.repository.requests.service.RequestsService;
-import utm.mu.rsk.microfinance.rskservice.user.model.UserModel;
+import utm.mu.rsk.microfinance.rskservice.repository.user.model.UserModel;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerService {

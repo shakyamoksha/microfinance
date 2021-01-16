@@ -1,8 +1,8 @@
-package utm.mu.rsk.microfinance.rskservice.user.service;
+package utm.mu.rsk.microfinance.rskservice.repository.user.service;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import utm.mu.rsk.microfinance.rskservice.user.model.UserModel;
+import utm.mu.rsk.microfinance.rskservice.repository.user.model.UserModel;
 
 import java.util.Arrays;
 import java.util.Collection;

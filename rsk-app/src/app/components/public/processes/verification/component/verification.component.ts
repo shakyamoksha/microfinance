@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RegistrationService} from '../../register/service/register.service';
 import {User} from '../../../../../shared/schemas/user';
+import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
@@ -13,7 +14,11 @@ export class VerificationComponent implements OnInit {
   message: string;
   status: number;
 
-  constructor(private route: ActivatedRoute, private service: RegistrationService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private service: RegistrationService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
     this.verification(this.route.snapshot.params[('user')], this.route.snapshot.params[('token')]);
@@ -27,14 +32,11 @@ export class VerificationComponent implements OnInit {
       this.message = response[`message`];
 
       if (status === '200') {
-        console.log(response[`message`]);
-
+        this.toastr.success(response.message);
       } else if (status === '201') {
-        console.log(response[`message`]);
-
+        this.toastr.info(response.message);
       } else if (status === '404') {
-        console.log(response[`message`]);
-
+        this.toastr.error(response[`message`]);
       }
 
     });
