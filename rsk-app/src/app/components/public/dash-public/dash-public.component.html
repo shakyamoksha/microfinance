@@ -56,10 +56,21 @@
       <mat-icon matTooltip="Authenticated" *ngIf="this.authenticateService.isLoggedIn()">
         verified_user
       </mat-icon>
-      <button mat-button matTooltip="Sign Out"
-              *ngIf="this.authenticateService.isLoggedIn()" (click)="this.authenticateService.logout()">
-        <mat-icon>clear</mat-icon>
+
+      <button mat-icon-button *ngIf="this.authenticateService.isLoggedIn()" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
       </button>
+      <mat-menu #menu="matMenu">
+        <button (click)="openCustomerDialog()" mat-menu-item matTooltip="Edit Profile">
+          <mat-icon>perm_identity</mat-icon>
+          <span>Edit Profile</span>
+        </button>
+        <button mat-menu-item matTooltip="Sign Out" (click)="this.authenticateService.logout()">
+          <mat-icon>clear</mat-icon>
+          <span>Sign Out</span>
+        </button>
+      </mat-menu>
+
     </mat-toolbar>
 
     <!-- Add Content Here -->

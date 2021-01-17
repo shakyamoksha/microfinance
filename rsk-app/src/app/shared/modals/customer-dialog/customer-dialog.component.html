@@ -1,0 +1,111 @@
+<form [formGroup]="customerFormGroup">
+  <div class="row">
+    <div class="col-6">
+
+      <div class="row">
+        <div class="col-5">
+          <mat-form-field class="full-width">
+            <mat-label> First Name</mat-label>
+            <input matInput formControlName="firstName" placeholder="First name" required>
+            <mat-error *ngIf="customerFormGroup.controls['firstName'].hasError('pattern')">Character only!</mat-error>
+            <mat-error *ngIf="customerFormGroup.controls['firstName'].hasError('required')">Information required!</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-5">
+          <mat-form-field class="full-width">
+            <mat-label> Last Name</mat-label>
+            <input matInput formControlName="lastName" placeholder="Last name" required>
+            <mat-error *ngIf="customerFormGroup.controls['lastName'].hasError('pattern')">Character only!</mat-error>
+            <mat-error *ngIf="customerFormGroup.controls['lastName'].hasError('required')">Information required!</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="full-width">
+            <mat-label>National Identity Card</mat-label>
+            <input matInput formControlName="nic" placeholder="Ex. (S)1234567894561" required>
+            <mat-error *ngIf="customerFormGroup.controls['nic'].hasError('pattern')">Incorrect format!</mat-error>
+            <mat-error *ngIf="customerFormGroup.controls['nic'].hasError('required')">Information required!</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="full-width">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput formControlName="dateOfBirth" placeholder="Date of Birth" [matDatepicker]="dp3" required>
+            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+            <mat-datepicker #dp3 disabled="false" startView="year" [startAt]="startDate" ></mat-datepicker>
+            <mat-error *ngIf="customerFormGroup.controls['dateOfBirth'].hasError('required')">Information required!</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-5">
+          <mat-form-field class="full-width">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phone" placeholder="Ex. 5*** ****" required>
+            <mat-error *ngIf="customerFormGroup.controls['phone'].hasError('pattern')">Invalid Phone number!</mat-error>
+            <mat-error *ngIf="customerFormGroup.controls['phone'].hasError('required')">Information required!</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field style="margin-left: 10px" class="full-width">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY" required>
+            <mat-error *ngIf="customerFormGroup.controls['address'].hasError('required')">Information required!</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field class="full-width">
+            <mat-label>Email Address</mat-label>
+            <input matInput formControlName="email" placeholder="example@yahoo.com" required>
+            <mat-error *ngIf="customerFormGroup.controls['email'].hasError('required')">Email required!</mat-error>
+            <mat-error *ngIf="customerFormGroup.controls['email'].hasError('pattern')">Invalid Email!</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-5">
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" #password placeholder="Choose Wisely" required>
+            <mat-error *ngIf="customerFormGroup.controls['password'].hasError('required')">Password required!</mat-error>
+            <mat-error *ngIf="customerFormGroup.controls['password'].hasError('passwordStrength')">
+              {{customerFormGroup.get('password').errors['passwordStrength']}}
+            </mat-error>
+            <mat-error *ngIf="customerFormGroup.controls['password'].hasError('minlength')">Must be at least 10 characters!</mat-error>
+            <mat-hint align="end" aria-live="polite">
+              {{password.value.length}} / 50
+            </mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="col-5">
+          <mat-form-field class="full-width">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput formControlName="confirmPassword" placeholder="Confirm Password" required>
+            <mat-error *ngIf="customerFormGroup.controls['password'].hasError('required')">Confirmation password required!</mat-error>
+            <mat-error *ngIf="customerFormGroup.controls['confirmPassword'].hasError('mustMatch')">Passwords don't match!</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-6">
+      <button mat-icon-button type="button"
+              style="margin-left: 20px" matTooltip="View Document" (click)="viewFileReadOnly()">
+        <mat-icon>zoom_out_map</mat-icon>
+      </button>
+    </div>
+  </div>
+</form>

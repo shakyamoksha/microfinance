@@ -16,16 +16,18 @@ import {ToastrModule} from 'ngx-toastr';
 import {ConfirmationDialogComponent} from './shared/modals/confirmation-dialog/confirmation-dialog.component';
 import {DocumentViewComponent} from './shared/modals/document-view/document-view.component';
 import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
+import {CustomerDialogComponent} from './shared/modals/customer-dialog/customer-dialog.component';
 
 @NgModule({
-  entryComponents: [ConfirmationDialogComponent, DocumentViewComponent],
+  entryComponents: [ConfirmationDialogComponent, DocumentViewComponent, CustomerDialogComponent],
   declarations: [
     AppComponent,
     DashPublicComponent,
     DashLenderComponent,
     VerificationComponent,
     ConfirmationDialogComponent,
-    DocumentViewComponent
+    DocumentViewComponent,
+    CustomerDialogComponent
   ],
   imports: [
     BrowserModule,
